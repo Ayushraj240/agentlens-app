@@ -11,7 +11,12 @@ load_dotenv()
 
 app = Flask(__name__)
 
-DB_FILE = "simulated_products.json"
+import os
+# Check if running on Vercel (Vercel sets specific environment variables)
+if os.environ.get("VERCEL") or os.environ.get("VERCEL_URL"):
+    DB_FILE = "/tmp/simulated_products.json"
+else:
+    DB_FILE = "simulated_products.json"
 
 def load_simulated_products():
     if os.path.exists(DB_FILE):
