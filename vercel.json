@@ -1,14 +1,14 @@
 {
   "builds": [
     {
-      "src": "app.py",
+      "src": "agentlens/app.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/app.py"
+      "dest": "/agentlens/app.py"
     }
   ]
 }
