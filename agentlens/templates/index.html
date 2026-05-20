@@ -1,0 +1,2281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AgentLens AI Optimization Report</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="bg-shape bg-shape-1"></div>
+    <div class="bg-shape bg-shape-2"></div>
+    <div class="bg-shape bg-shape-3"></div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Professional Sticky Navigation Bar -->
+    <nav class="navbar" style="position: sticky; top: 0; z-index: 1000; background: rgba(11, 15, 27, 0.85); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-bottom: 1px solid rgba(255, 255, 255, 0.08); width: 100%; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.5rem; height: 68px;">
+            <div style="display: flex; align-items: center; gap: 12px; cursor: pointer;" onclick="location.reload()">
+                <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(0, 240, 255, 0.35);">
+                    <i class="fa-solid fa-robot" style="font-size: 1.25rem; color: white;"></i>
+                </div>
+                <span style="font-family: var(--font-heading); font-weight: 800; font-size: 1.4rem; letter-spacing: -0.5px; background: linear-gradient(to right, #ffffff, var(--primary-cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">AgentLens AI</span>
+            </div>
+            
+            <div class="nav-links-container" style="display: flex; align-items: center; gap: 2rem; font-size: 0.92rem; font-weight: 600; color: var(--text-muted); font-family: var(--font-heading);">
+                <a href="#dashboard" style="color: var(--primary-cyan); text-decoration: none; transition: color 0.2s;">Dashboard</a>
+                <a href="#products-section" style="color: inherit; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='inherit'">SEO Optimizers</a>
+                <a href="#" onclick="toggleChat(); return false;" style="color: inherit; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='inherit'">AI Coach</a>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 14px;">
+                <span class="status-badge" style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); color: #10b981; padding: 6px 14px; border-radius: 10px; font-size: 0.78rem; font-weight: 700; display: inline-flex; align-items: center; gap: 8px;">
+                    <span style="width: 8px; height: 8px; border-radius: 50%; background: #10b981; display: inline-block; animation: pulseStatus 2s infinite;"></span>
+                    Shopify Connected
+                </span>
+                <button class="action-btn" onclick="fixAllStoreIssues()" style="background: linear-gradient(135deg, #ec4899, #8b5cf6); border: none; color: #fff; font-weight: 700; padding: 8px 16px; border-radius: 10px; font-size: 0.82rem; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 0 15px rgba(236, 72, 153, 0.35); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Fix All Issues
+                </button>
+                <button class="action-btn" onclick="location.reload()" style="background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); border: none; color: #fff; font-weight: 700; padding: 8px 16px; border-radius: 10px; font-size: 0.82rem; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 0 15px rgba(0, 240, 255, 0.25); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+                    <i class="fa-solid fa-arrows-rotate"></i> Sync Store
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" id="dashboard" style="padding-top: 2rem;">
+        <header class="fade-in" style="margin-bottom: 3rem; text-align: center;">
+            <h1 style="font-size: 3.4rem; font-weight: 800; letter-spacing: -1.5px; background: linear-gradient(135deg, #ffffff 40%, var(--primary-cyan) 80%, #d8b4fe 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Shopify Intelligence Hub</h1>
+            <p style="color: var(--accent-blue); font-size: 1.05rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; margin-top: 0.5rem;">Autonomous AI SEO Optimization Dashboard</p>
+        </header>
+
+        <!-- Dynamic Overview Metric Cards Grid -->
+        <section class="overview-grid fade-in delay-1" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 4rem; width: 100%;">
+            
+            <!-- Card 1: Score Circle -->
+            <div class="glass-panel" style="padding: 2rem 1.75rem; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 250px;">
+                <h3 style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 1.25rem; font-family: var(--font-heading); font-weight: 700;">Overall Score</h3>
+                <div class="progress-ring-container" style="position: relative; width: 130px; height: 130px; display: flex; align-items: center; justify-content: center;">
+                    <svg class="progress-ring" width="130" height="130">
+                        <defs>
+                            <linearGradient id="gradient-card" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#00f0ff" />
+                                <stop offset="100%" stop-color="#a855f7" />
+                            </linearGradient>
+                        </defs>
+                        <circle class="progress-ring-bg" stroke="rgba(255,255,255,0.06)" stroke-width="10" fill="transparent" r="52" cx="65" cy="65"/>
+                        <circle class="progress-ring-circle" id="overall-progress-circle" stroke="url(#gradient-card)" stroke-width="10" fill="transparent" r="52" cx="65" cy="65"
+                                style="stroke-dasharray: 326.7; stroke-dashoffset: calc(326.7 - (326.7 * {{ avg_score }}) / 100); transition: stroke-dashoffset 0.8s ease-in-out;"/>
+                    </svg>
+                    <div class="score-value" style="position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                        <span class="number" id="overall-score-num" style="font-size: 1.9rem; font-weight: 800; font-family: var(--font-heading); color: #fff;">{{ avg_score|int }}</span>
+                        <span class="total" style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">/ 100</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Store Diagnostics -->
+            <div class="glass-panel" style="padding: 2rem 1.75rem; display: flex; flex-direction: column; justify-content: space-between; min-height: 250px;">
+                <div>
+                    <h3 style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 1.25rem; font-family: var(--font-heading); font-weight: 700;">Store Diagnostic</h3>
+                    <div style="display: flex; flex-direction: column; gap: 0.8rem; font-size: 0.9rem;">
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.4rem;">
+                            <span style="color: var(--text-muted);">Total Products:</span>
+                            <strong style="color: #fff;">{{ report|length }}</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.4rem;">
+                            <span style="color: var(--text-muted);">Fully Optimized:</span>
+                            <strong style="color: #10b981;">
+                                {% set count = namespace(value=0) %}
+                                {% for p in report %}
+                                    {% if p.score >= 90 %}{% set count.value = count.value + 1 %}{% endif %}
+                                {% endfor %}
+                                {{ count.value }} / {{ report|length }}
+                            </strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.4rem;">
+                            <span style="color: var(--text-muted);">Needs Attention:</span>
+                            <strong style="color: var(--accent-pink);">
+                                {{ report|length - count.value }} Products
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+                    <div style="font-size: 0.8rem; color: var(--text-muted); display: inline-flex; align-items: center; gap: 6px;">
+                        <i class="fa-solid fa-circle-check" style="color: #10b981;"></i>
+                        <span>Diagnosed 100% of Catalog</span>
+                    </div>
+                    <button class="action-btn" onclick="fixAllStoreIssues()" style="background: linear-gradient(135deg, #ec4899, #8b5cf6); border: none; color: #fff; font-weight: 700; width: 100%; padding: 10px; border-radius: 10px; font-size: 0.82rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 0 15px rgba(236, 72, 153, 0.3); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Fix All Store Issues
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 3: Autonomous AI Agents status -->
+            <div class="glass-panel" style="padding: 2rem 1.75rem; display: flex; flex-direction: column; justify-content: space-between; min-height: 250px;">
+                <div>
+                    <h3 style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 1.25rem; font-family: var(--font-heading); font-weight: 700;">Active AI Agents</h3>
+                    <div style="display: flex; flex-direction: column; gap: 0.7rem; font-size: 0.85rem; color: var(--text-main);">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="width: 7px; height: 7px; border-radius: 50%; background: #10b981; box-shadow: 0 0 6px #10b981;"></span>
+                            <span>Auto-Optimizer: <strong style="color: #10b981;">Active</strong></span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="width: 7px; height: 7px; border-radius: 50%; background: #10b981; box-shadow: 0 0 6px #10b981;"></span>
+                            <span>Ad Copywriter: <strong style="color: #10b981;">Standby</strong></span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="width: 7px; height: 7px; border-radius: 50%; background: #10b981; box-shadow: 0 0 6px #10b981;"></span>
+                            <span>Competitor Audit: <strong style="color: #10b981;">Ready</strong></span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="width: 7px; height: 7px; border-radius: 50%; background: #10b981; box-shadow: 0 0 6px #10b981;"></span>
+                            <span>AI Store Coach: <strong style="color: #10b981;">Active</strong></span>
+                        </div>
+                    </div>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); display: inline-flex; align-items: center; gap: 6px;">
+                    <i class="fa-solid fa-shield-halved" style="color: var(--primary-cyan);"></i>
+                    <span>GPT-4o Optimizers Loaded</span>
+                </div>
+            </div>
+
+            <!-- Card 4: Store Performance Lift projections -->
+            <div class="glass-panel" style="padding: 2rem 1.75rem; display: flex; flex-direction: column; justify-content: space-between; min-height: 250px;">
+                <div>
+                    <h3 style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 1.25rem; font-family: var(--font-heading); font-weight: 700;">Projected Growth</h3>
+                    <div style="display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.9rem;">
+                        <div style="display: flex; align-items: baseline; justify-content: space-between;">
+                            <span style="color: var(--text-muted); font-size: 0.85rem;">SEO Traffic:</span>
+                            <span style="font-weight: 700; color: #10b981; font-size: 1.15rem;">+34.2%</span>
+                        </div>
+                        <div style="display: flex; align-items: baseline; justify-content: space-between;">
+                            <span style="color: var(--text-muted); font-size: 0.85rem;">Conversions:</span>
+                            <span style="font-weight: 700; color: #10b981; font-size: 1.15rem;">+2.45%</span>
+                        </div>
+                        <div style="display: flex; align-items: baseline; justify-content: space-between;">
+                            <span style="color: var(--text-muted); font-size: 0.85rem;">Bounce Cut:</span>
+                            <span style="font-weight: 700; color: #10b981; font-size: 1.15rem;">-12.8%</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); display: inline-flex; align-items: center; gap: 6px;">
+                    <i class="fa-solid fa-chart-line" style="color: var(--accent-purple);"></i>
+                    <span>Real-Time Projections</span>
+                </div>
+            </div>
+            
+        </section>
+
+        <!-- Product Section -->
+        <section class="products-section fade-in delay-2" id="products-section">
+            <h2 class="section-title"><i class="fa-solid fa-layer-group"></i> Catalog Optimization Panel</h2>
+            
+            <div class="product-grid">
+                {% for product in report %}
+                <div class="glass-panel product-card" id="product-card-{{ product.id }}">
+                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                        <div style="display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0;">
+                            <input type="checkbox" class="product-select-checkbox" data-product-id="{{ product.id }}" onchange="updateBatchBar()" style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--primary-cyan); flex-shrink: 0;">
+                            <h3 onclick="showRecommendations('{{ product.id }}', '{{ product.title }}')" style="margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; transition: color 0.15s ease;" onmouseover="this.style.color='var(--primary-cyan)'" onmouseout="this.style.color='#fff'" title="Click to view full description optimization diff and recommendation analytics">{{ product.title }}</h3>
+                        </div>
+                        <div class="product-score" id="product-score-val-{{ product.id }}" style="flex-shrink: 0;">
+                            <i class="fa-solid fa-chart-line"></i> <span class="score-num">{{ product.score }}</span>
+                        </div>
+                    </div>
+
+                    <!-- Product Image -->
+                    <div class="product-image-container" style="position: relative; overflow: hidden;">
+                        {% if product.image_url %}
+                            <img src="{{ product.image_url }}" alt="{{ product.title }}" class="product-img" id="product-img-{{ product.id }}">
+                        {% else %}
+                            <div class="product-image-placeholder">
+                                <i class="fa-regular fa-image"></i>
+                                <span>No Image</span>
+                            </div>
+                        {% endif %}
+                        <div class="image-overlay-actions" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11,15,25,0.7); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s ease;">
+                            <button class="action-btn hover-mockup-btn" onclick="openMockupModal('{{ product.id }}', '{{ product.title }}', '{{ product.image_url or '' }}')" style="padding: 8px 16px; border-radius: 8px; background: var(--gradient-cyan); color: #0b0f19; font-weight: bold; font-size: 0.85rem; border: none; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> Studio Mockup
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Status Logic -->
+                    <div class="status-badge-container" id="status-container-{{ product.id }}">
+                        {% if product.score >= 80 %}
+                            <span class="status-badge excellent">
+                                <i class="fa-solid fa-check-circle"></i> Excellent
+                            </span>
+                        {% elif product.score >= 60 %}
+                            <span class="status-badge good">
+                                <i class="fa-solid fa-exclamation-triangle"></i> Needs Improvement
+                            </span>
+                        {% elif product.score >= 40 %}
+                            <span class="status-badge weak">
+                                <i class="fa-solid fa-exclamation-circle"></i> Weak
+                            </span>
+                        {% else %}
+                            <span class="status-badge poor">
+                                <i class="fa-solid fa-times-circle"></i> Poor
+                            </span>
+                        {% endif %}
+                    </div>
+
+                    <!-- Issues -->
+                    <div class="issues-container" id="issues-container-{{ product.id }}">
+                        {% if product.issues %}
+                            <h4 class="issues-title"><i class="fa-solid fa-list-check"></i> Prioritized Action Plan</h4>
+                            <div class="priority-sections" style="display: flex; flex-direction: column; gap: 12px; margin-top: 8px;">
+                                {% if product.categorized_issues.high %}
+                                    <div class="priority-section high-sec" style="background: rgba(244, 63, 94, 0.04); border-left: 3px solid #f43f5e; padding: 6px 10px; border-radius: 4px;">
+                                        <div style="font-size: 0.7rem; font-weight: bold; color: #f43f5e; text-transform: uppercase; margin-bottom: 4px; display: flex; align-items: center; gap: 4px;">
+                                            <i class="fa-solid fa-circle-exclamation"></i> Critical Actions (High)
+                                        </div>
+                                        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px;">
+                                            {% for issue in product.categorized_issues.high %}
+                                                <li style="font-size: 0.75rem; color: #fda4af; display: flex; align-items: flex-start; gap: 4px;">
+                                                    <span style="color: #f43f5e;">•</span> <span>{{ issue }}</span>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+                                {% if product.categorized_issues.medium %}
+                                    <div class="priority-section med-sec" style="background: rgba(234, 179, 8, 0.04); border-left: 3px solid #eab308; padding: 6px 10px; border-radius: 4px;">
+                                        <div style="font-size: 0.7rem; font-weight: bold; color: #eab308; text-transform: uppercase; margin-bottom: 4px; display: flex; align-items: center; gap: 4px;">
+                                            <i class="fa-solid fa-triangle-exclamation"></i> Recommended Fixes (Med)
+                                        </div>
+                                        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px;">
+                                            {% for issue in product.categorized_issues.medium %}
+                                                <li style="font-size: 0.75rem; color: #fef08a; display: flex; align-items: flex-start; gap: 4px;">
+                                                    <span style="color: #eab308;">•</span> <span>{{ issue }}</span>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+                                {% if product.categorized_issues.low %}
+                                    <div class="priority-section low-sec" style="background: rgba(59, 130, 246, 0.04); border-left: 3px solid #3b82f6; padding: 6px 10px; border-radius: 4px;">
+                                        <div style="font-size: 0.7rem; font-weight: bold; color: #3b82f6; text-transform: uppercase; margin-bottom: 4px; display: flex; align-items: center; gap: 4px;">
+                                            <i class="fa-solid fa-circle-info"></i> Optional Tweaks (Low)
+                                        </div>
+                                        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px;">
+                                            {% for issue in product.categorized_issues.low %}
+                                                <li style="font-size: 0.75rem; color: #93c5fd; display: flex; align-items: flex-start; gap: 4px;">
+                                                    <span style="color: #3b82f6;">•</span> <span>{{ issue }}</span>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% else %}
+                            <div class="no-issues">
+                                <i class="fa-solid fa-shield-check"></i>
+                                <p>Fully optimized! No issues detected.</p>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="card-actions-wrapper" style="display: flex; flex-direction: column; gap: 8px; margin-top: 1.5rem;">
+                        <div class="card-actions" style="margin-top: 0;">
+                            <button class="action-btn recommend-btn" onclick="showRecommendations('{{ product.id }}', '{{ product.title }}')">
+                                <i class="fa-solid fa-lightbulb"></i> AI Recommendations
+                            </button>
+                            <button class="action-btn optimize-btn {% if product.score >= 100 %}already-optimized{% endif %}" 
+                                    onclick="optimizeProduct('{{ product.id }}', this)"
+                                    {% if product.score >= 100 %}disabled{% endif %}>
+                                {% if product.score >= 100 %}
+                                    <i class="fa-solid fa-check-double"></i> Fully Optimized
+                                {% else %}
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i> Auto-Optimize
+                                {% endif %}
+                            </button>
+                        </div>
+                        <button class="action-btn representation-lab-direct-btn" style="background: rgba(168, 85, 247, 0.12); border: 1px solid rgba(168, 85, 247, 0.3); color: #d8b4fe;" onclick="openRepresentationLab('{{ product.id }}', '{{ product.title }}')">
+                            <i class="fa-solid fa-flask-vial"></i> Open AI Representation Lab
+                        </button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+
+    <!-- Professional SaaS Footer -->
+    <footer style="margin-top: 6rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; font-size: 0.85rem; color: var(--text-muted); padding-bottom: 3rem;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-robot" style="color: var(--primary-cyan); font-size: 1rem;"></i>
+                <span style="font-weight: bold; color: #fff; font-family: var(--font-heading);">AgentLens AI Suite</span>
+            </div>
+            <div style="display: flex; gap: 1.5rem;">
+                <a href="#" style="color: inherit; text-decoration: none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='inherit'">Privacy Policy</a>
+                <a href="#" style="color: inherit; text-decoration: none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='inherit'">Terms of Service</a>
+                <a href="#" style="color: inherit; text-decoration: none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='inherit'">API Docs</a>
+                <a href="#" style="color: inherit; text-decoration: none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='inherit'">System Status</a>
+            </div>
+            <div>
+                <span>&copy; 2026 AgentLens AI. All rights reserved.</span>
+            </div>
+        </div>
+        <div style="margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.75rem; color: #64748b;">
+            <span style="width: 6px; height: 6px; border-radius: 50%; background: #10b981; display: inline-block; box-shadow: 0 0 6px #10b981;"></span>
+            All AI Core Systems Operational
+        </div>
+    </footer>
+
+    <!-- AI Recommendation Drawer / Modal -->
+    <div id="recommendations-modal" class="modal-overlay" onclick="closeRecommendationsOnOverlay(event)">
+        <div class="glass-panel modal-content">
+            <button class="close-modal-btn" onclick="closeRecommendations()">&times;</button>
+            <h2 id="modal-product-title">Product Optimization Advice</h2>
+            <p class="modal-subtitle">AI Agent Recommendation Engine & Analytics</p>
+            
+            <!-- Modal Tabs -->
+            <div class="modal-tabs" id="modal-tabs-bar" style="display: none; margin-top: 15px; margin-bottom: 15px;">
+                <button class="modal-tab-btn active" onclick="switchModalTab(event, 'seo-tab-content')">
+                    <i class="fa-solid fa-magnifying-glass-chart"></i> SEO Advice
+                </button>
+                <button class="modal-tab-btn" onclick="switchModalTab(event, 'description-compare-tab-content')">
+                    <i class="fa-solid fa-code-compare"></i> Before & After Description
+                </button>
+                <button class="modal-tab-btn" onclick="switchModalTab(event, 'representation-lab-tab-content')">
+                    <i class="fa-solid fa-flask-vial"></i> Representation Lab
+                </button>
+                <button class="modal-tab-btn" onclick="switchModalTab(event, 'marketing-tab-content')">
+                    <i class="fa-solid fa-bullhorn"></i> Social Ad Copy
+                </button>
+                <button class="modal-tab-btn" onclick="switchModalTab(event, 'competitor-tab-content')">
+                    <i class="fa-solid fa-user-ninja"></i> Competitor Audit
+                </button>
+            </div>
+            
+            <div id="modal-loading" class="modal-loading-state">
+                <div class="spinner"></div>
+                <p>Analyzing product content & generating tailored recommendations...</p>
+            </div>
+            
+            <div id="modal-data" class="modal-data-content" style="display: none;">
+                
+                <!-- SEO Tab Content -->
+                <div id="seo-tab-content" class="tab-panel active">
+                    <div class="modal-section" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding-bottom: 1.5rem; margin-bottom: 2rem;">
+                        <h3><i class="fa-solid fa-list-check icon-cyan" style="color: var(--primary-cyan);"></i> Prioritized Action Plan</h3>
+                        <div id="modal-prioritized-issues" style="margin-top: 12px; background: rgba(0,0,0,0.15); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.04);"></div>
+                    </div>
+
+                    <div class="modal-section">
+                        <h3><i class="fa-solid fa-key icon-cyan"></i> Recommended Keywords</h3>
+                        <div id="rec-keywords" class="keyword-pills"></div>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3><i class="fa-solid fa-magnifying-glass-chart icon-purple"></i> SEO Long-Tail Phrases</h3>
+                        <ul id="rec-seo-phrases" class="seo-phrases-list"></ul>
+                    </div>
+
+                    <div class="modal-section">
+                        <h3><i class="fa-solid fa-tags icon-cyan"></i> Suggested Shopify Tags</h3>
+                        <div id="rec-tags" class="tag-pills"></div>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3><i class="fa-solid fa-wand-magic-sparkles icon-purple"></i> Description Suggestions</h3>
+                        <div id="rec-desc-suggestions" class="desc-suggestions-box"></div>
+                    </div>
+
+                    <div class="modal-section">
+                        <h3><i class="fa-solid fa-clipboard-question icon-cyan"></i> Score Analysis</h3>
+                        <p id="rec-score-explanation" class="score-explanation-text"></p>
+                    </div>
+                </div>
+
+                <!-- Marketing Copy Tab Content -->
+                <div id="marketing-tab-content" class="tab-panel" style="display: none;">
+                    <div id="marketing-loading" class="tab-loading-state" style="display: none;">
+                        <div class="spinner" style="margin: 30px auto;"></div>
+                        <p style="text-align: center; opacity: 0.8;">Generating marketing copy templates...</p>
+                    </div>
+                    <div id="marketing-data" class="marketing-data-container">
+                        <div class="modal-section">
+                            <h3><i class="fa-brands fa-instagram icon-pink"></i> Instagram Post Caption</h3>
+                            <div class="copyable-box">
+                                <pre id="copy-instagram"></pre>
+                                <button class="copy-btn-action" onclick="copyText('copy-instagram')"><i class="fa-regular fa-copy"></i> Copy</button>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3><i class="fa-brands fa-google icon-cyan"></i> Google Search Ad Copy</h3>
+                            <div class="copyable-box">
+                                <strong id="copy-google-headline" style="color: var(--primary-cyan); font-size: 1.1rem; display: block; margin-bottom: 5px;"></strong>
+                                <p id="copy-google-desc" style="margin: 0; opacity: 0.9;"></p>
+                                <button class="copy-btn-action" onclick="copyGoogleAd()"><i class="fa-regular fa-copy"></i> Copy</button>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3><i class="fa-regular fa-envelope icon-purple"></i> Promotional Email Campaign</h3>
+                            <div class="copyable-box">
+                                <strong id="copy-email-subject" style="display: block; margin-bottom: 8px;"></strong>
+                                <pre id="copy-email-body" style="white-space: pre-wrap; font-family: inherit; font-size: 0.95rem; margin: 0;"></pre>
+                                <button class="copy-btn-action" onclick="copyEmailCopy()"><i class="fa-regular fa-copy"></i> Copy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Competitor Tab Content -->
+                <div id="competitor-tab-content" class="tab-panel" style="display: none;">
+                    <div class="modal-section">
+                        <h3><i class="fa-solid fa-spider icon-cyan"></i> Competitor Analysis Scraper</h3>
+                        <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 15px;">Enter a competitor's product URL to scrape details and compare SEO strength side-by-side.</p>
+                        <div class="competitor-input-row" style="display: flex; gap: 10px; margin-bottom: 20px;">
+                            <input type="url" id="competitor-url" placeholder="https://competitor.com/products/name" style="flex: 1; padding: 10px 15px; border-radius: 8px; border: 1px rgba(255,255,255,0.15) solid; background: rgba(255,255,255,0.05); color: #fff;">
+                            <button class="action-btn" onclick="runCompetitorAnalysis()" style="background: var(--primary-cyan); color: #0b0f19; font-weight: bold; border-radius: 8px; padding: 0 20px; font-size: 0.9rem;">Scrape & Compare</button>
+                        </div>
+                    </div>
+                    
+                    <div id="competitor-loading" class="tab-loading-state" style="display: none;">
+                        <div class="spinner" style="margin: 30px auto;"></div>
+                        <p style="text-align: center; opacity: 0.8;">Scraping URL and auditing competitor details...</p>
+                    </div>
+
+                    <div id="competitor-data" class="competitor-data-container" style="display: none;">
+                        <!-- Side by Side Metrics -->
+                        <div class="comparison-row" style="display: flex; gap: 20px; margin-bottom: 20px;">
+                            <div class="comparison-card" style="flex: 1; background: rgba(0,240,255,0.05); border: 1px rgba(0,240,255,0.15) solid; border-radius: 12px; padding: 15px; text-align: center;">
+                                <span style="font-size: 0.9rem; opacity: 0.8; display: block; margin-bottom: 5px;">Our SEO Score</span>
+                                <strong id="comp-our-score" style="font-size: 2.2rem; color: var(--primary-cyan);">75</strong>
+                            </div>
+                            <div class="comparison-card" style="flex: 1; background: rgba(184,81,255,0.05); border: 1px rgba(184,81,255,0.15) solid; border-radius: 12px; padding: 15px; text-align: center;">
+                                <span id="comp-name-lbl" style="font-size: 0.9rem; opacity: 0.8; display: block; margin-bottom: 5px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">Competitor Score</span>
+                                <strong id="comp-their-score" style="font-size: 2.2rem; color: var(--primary-purple);">68</strong>
+                            </div>
+                        </div>
+
+                        <div class="modal-section">
+                            <h3><i class="fa-solid fa-circle-check icon-cyan"></i> Competitor Strengths</h3>
+                            <ul id="comp-strengths" class="seo-phrases-list"></ul>
+                        </div>
+
+                        <div class="modal-section">
+                            <h3><i class="fa-solid fa-circle-xmark icon-pink"></i> Competitor Weaknesses</h3>
+                            <ul id="comp-weaknesses" class="seo-phrases-list" style="color: rgba(255,100,100,0.95);"></ul>
+                        </div>
+
+                        <div class="modal-section">
+                            <h3><i class="fa-solid fa-circle-right icon-purple"></i> Action Plan to Out-Rank</h3>
+                            <ul id="comp-recommendations" class="seo-phrases-list"></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Description Comparison Tab Content -->
+                <div id="description-compare-tab-content" class="tab-panel" style="display: none;">
+                    <div class="modal-section">
+                        <h3><i class="fa-solid fa-code-compare icon-cyan"></i> Description Before & After Auto-Optimize</h3>
+                        <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 20px;">
+                            See the exact changes the AI Optimization Agent applies to the HTML description to inject policy compliance, trust badges, and semantic SEO content.
+                        </p>
+                        
+                        <!-- Toggle view mode -->
+                        <div style="display: flex; justify-content: flex-end; margin-bottom: 15px; gap: 10px;">
+                            <button id="desc-view-rendered-btn" class="action-btn active" onclick="setDescViewMode('rendered')" style="font-size: 0.8rem; padding: 6px 12px; border-radius: 6px;">
+                                <i class="fa-solid fa-eye"></i> Rendered Preview
+                            </button>
+                            <button id="desc-view-raw-btn" class="action-btn" onclick="setDescViewMode('raw')" style="font-size: 0.8rem; padding: 6px 12px; border-radius: 6px;">
+                                <i class="fa-solid fa-code"></i> Raw HTML
+                            </button>
+                        </div>
+
+                        <!-- Comparator Flex Grid -->
+                        <div class="desc-comparison-grid" style="display: flex; flex-direction: row; gap: 20px; flex-wrap: wrap;">
+                            
+                            <!-- Before Box -->
+                            <div class="comparison-pane-box" style="flex: 1; min-width: 280px; background: rgba(244, 63, 94, 0.03); border: 1px solid rgba(244, 63, 94, 0.2); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 10px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-size: 0.75rem; font-weight: 700; color: #f43f5e; text-transform: uppercase; letter-spacing: 1px; background: rgba(244,63,94,0.1); padding: 4px 10px; border-radius: 50px;">
+                                        <i class="fa-solid fa-history"></i> Original (Before)
+                                    </span>
+                                    <span id="desc-orig-words-lbl" style="font-size: 0.75rem; color: var(--text-muted);">0 words</span>
+                                </div>
+                                
+                                <div class="desc-pane-content" style="flex: 1; min-height: 250px; max-height: 400px; overflow-y: auto; font-size: 0.88rem; line-height: 1.6; padding: 10px; background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px solid rgba(255,255,255,0.04);">
+                                    <div id="desc-orig-preview"></div>
+                                    <pre id="desc-orig-raw" style="display: none; white-space: pre-wrap; font-family: 'Courier New', monospace; font-size: 0.78rem; margin: 0; color: #f87171;"></pre>
+                                </div>
+                            </div>
+                            
+                            <!-- After Box -->
+                            <div class="comparison-pane-box" style="flex: 1; min-width: 280px; background: rgba(16, 185, 129, 0.03); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 0 20px rgba(16, 185, 129, 0.05);">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-size: 0.75rem; font-weight: 700; color: #10b981; text-transform: uppercase; letter-spacing: 1px; background: rgba(16,185,129,0.1); padding: 4px 10px; border-radius: 50px;">
+                                        <i class="fa-solid fa-wand-magic-sparkles"></i> AI Optimized (After)
+                                    </span>
+                                    <span id="desc-opt-words-lbl" style="font-size: 0.75rem; color: var(--text-muted);">0 words</span>
+                                </div>
+                                
+                                <div class="desc-pane-content" style="flex: 1; min-height: 250px; max-height: 400px; overflow-y: auto; font-size: 0.88rem; line-height: 1.6; padding: 10px; background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px solid rgba(255,255,255,0.04);">
+                                    <div id="desc-opt-preview"></div>
+                                    <pre id="desc-opt-raw" style="display: none; white-space: pre-wrap; font-family: 'Courier New', monospace; font-size: 0.78rem; margin: 0; color: #34d399;"></pre>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Representation Lab Tab Content -->
+                <div id="representation-lab-tab-content" class="tab-panel" style="display: none;">
+                    
+                    <!-- Lab Loading State -->
+                    <div id="lab-loading" class="modal-loading-state" style="padding: 40px 0;">
+                        <div class="spinner"></div>
+                        <p>Initializing AI Digital Twin & launching boardroom agents...</p>
+                    </div>
+                    
+                    <!-- Lab Data -->
+                    <div id="lab-data" style="display: none;">
+                        <div class="modal-section" style="margin-bottom: 20px;">
+                            <h3><i class="fa-solid fa-flask-vial icon-purple"></i> AI Representation Intelligence Lab</h3>
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 20px;">
+                                A futuristic identity sandbox that analyzes how artificial neural systems perceive, score, and critique your product representation.
+                            <div style="margin-top: 15px; margin-bottom: 25px; display: flex; justify-content: flex-start;">
+                                <button class="action-btn" id="align-twin-btn" onclick="alignTwinPerception(this)" style="background: linear-gradient(135deg, #a855f7, #10b981); border: none; color: #fff; font-weight: 700; padding: 12px 24px; border-radius: 12px; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                                    <i class="fa-solid fa-arrows-spin"></i> Optimize representation & Align Twin
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="lab-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+                            
+                            <!-- 1. Digital Twin Simulation -->
+                            <div class="glass-panel" style="padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02); display: flex; flex-direction: column; gap: 15px;">
+                                <h4 style="margin: 0; color: var(--primary-cyan); font-size: 1rem;"><i class="fa-solid fa-clone"></i> AI "Digital Twin" Perception</h4>
+                                <div style="display: flex; flex-direction: column; gap: 12px;">
+                                    <div style="background: rgba(255,255,255,0.03); border-radius: 8px; padding: 10px; border-left: 3px solid #4285f4;">
+                                        <span style="font-size: 0.75rem; font-weight: bold; color: #4285f4; display: block; text-transform: uppercase;">Google Search & Gemini</span>
+                                        <p id="twin-google-val" style="font-size: 0.85rem; margin: 5px 0 0 0; line-height: 1.4; opacity: 0.9;"></p>
+                                    </div>
+                                    <div style="background: rgba(255,255,255,0.03); border-radius: 8px; padding: 10px; border-left: 3px solid #ff9900;">
+                                        <span style="font-size: 0.75rem; font-weight: bold; color: #ff9900; display: block; text-transform: uppercase;">Amazon A9 Engine</span>
+                                        <p id="twin-amazon-val" style="font-size: 0.85rem; margin: 5px 0 0 0; line-height: 1.4; opacity: 0.9;"></p>
+                                    </div>
+                                    <div style="background: rgba(255,255,255,0.03); border-radius: 8px; padding: 10px; border-left: 3px solid #10a37f;">
+                                        <span style="font-size: 0.75rem; font-weight: bold; color: #10a37f; display: block; text-transform: uppercase;">Reasoning LLMs (ChatGPT)</span>
+                                        <p id="twin-chatgpt-val" style="font-size: 0.85rem; margin: 5px 0 0 0; line-height: 1.4; opacity: 0.9;"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 2. AI Identity Drift & Psychology -->
+                            <div class="glass-panel" style="padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02); display: flex; flex-direction: column; gap: 15px;">
+                                <h4 style="margin: 0; color: #f43f5e; font-size: 1rem;"><i class="fa-solid fa-wave-square"></i> Identity Drift & Psychology</h4>
+                                <div style="display: flex; gap: 15px; align-items: center; background: rgba(255,255,255,0.03); border-radius: 8px; padding: 12px;">
+                                    <!-- Circular Progress for Deviation -->
+                                    <div style="position: relative; width: 70px; height: 70px; flex-shrink: 0;">
+                                        <svg width="70" height="70" viewBox="0 0 70 70">
+                                            <circle cx="35" cy="35" r="28" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="6"/>
+                                            <circle id="drift-progress-circle" cx="35" cy="35" r="28" fill="none" stroke="#f43f5e" stroke-width="6" stroke-dasharray="175.9" stroke-dashoffset="175.9" transform="rotate(-90 35 35)" style="transition: stroke-dashoffset 0.8s ease-out;"/>
+                                        </svg>
+                                        <span id="drift-percent-val" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 0.95rem; font-weight: bold; color: #f43f5e;">0%</span>
+                                    </div>
+                                    <div>
+                                        <span style="font-size: 0.75rem; font-weight: bold; text-transform: uppercase; color: var(--text-muted);">Brand Identity Drift</span>
+                                        <p id="drift-voice-val" style="font-size: 0.82rem; margin: 4px 0 0 0; opacity: 0.95; line-height: 1.3;"></p>
+                                    </div>
+                                </div>
+                                <p id="drift-explain-val" style="font-size: 0.82rem; line-height: 1.4; margin: 0; opacity: 0.85; background: rgba(0,0,0,0.1); padding: 8px; border-radius: 6px;"></p>
+                                
+                                <div style="border-top: 1px solid rgba(255,255,255,0.06); padding-top: 10px; display: flex; flex-direction: column; gap: 8px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <span style="font-size: 0.78rem; opacity: 0.8;"><i class="fa-solid fa-brain"></i> Persuasion Biases:</span>
+                                        <div id="psych-biases-tags" style="display: flex; gap: 5px; flex-wrap: wrap;"></div>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <span style="font-size: 0.78rem; opacity: 0.8;"><i class="fa-solid fa-face-smile"></i> Emotional Tone:</span>
+                                        <span id="psych-tone-val" style="font-size: 0.82rem; font-weight: bold; color: var(--primary-cyan);"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 3. Internal Boardroom Debate AI -->
+                            <div class="glass-panel" style="grid-column: span 1; padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02); display: flex; flex-direction: column; gap: 15px;">
+                                <h4 style="margin: 0; color: #a855f7; font-size: 1rem;"><i class="fa-solid fa-comments"></i> Multi-Agent Boardroom Debate</h4>
+                                <div id="debate-chat-container" style="display: flex; flex-direction: column; gap: 12px; max-height: 260px; overflow-y: auto; padding-right: 5px;">
+                                    <!-- Conversation dynamically populated -->
+                                </div>
+                            </div>
+                            
+                            <!-- 4. Global Strategy & Stress Test -->
+                            <div class="glass-panel" style="grid-column: span 1; padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02); display: flex; flex-direction: row; gap: 20px; flex-wrap: wrap;">
+                                
+                                <!-- Cultural sensitivity adaptation -->
+                                <div style="flex: 1; min-width: 280px; display: flex; flex-direction: column; gap: 12px;">
+                                    <h4 style="margin: 0; color: #10b981; font-size: 1rem;"><i class="fa-solid fa-globe"></i> Cultural Sensitivity & Regional Strategy</h4>
+                                    <div style="background: rgba(16,185,129,0.03); border-radius: 8px; padding: 12px; border: 1px solid rgba(16,185,129,0.15); display: flex; flex-direction: column; gap: 8px;">
+                                        <div>
+                                            <span style="font-size: 0.72rem; font-weight: bold; color: #10b981; text-transform: uppercase;">Global Offense Audit</span>
+                                            <p id="cultural-offense-val" style="font-size: 0.8rem; margin: 2px 0 0 0; opacity: 0.9;"></p>
+                                        </div>
+                                        <div>
+                                            <span style="font-size: 0.72rem; font-weight: bold; color: #10b981; text-transform: uppercase;">Regional Slang / Jargon</span>
+                                            <p id="cultural-slang-val" style="font-size: 0.8rem; margin: 2px 0 0 0; opacity: 0.9;"></p>
+                                        </div>
+                                        <div>
+                                            <span style="font-size: 0.72rem; font-weight: bold; color: #10b981; text-transform: uppercase;">City-Tier Compliance</span>
+                                            <p id="cultural-tier-val" style="font-size: 0.8rem; margin: 2px 0 0 0; opacity: 0.9;"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Stress testing visibility charts -->
+                                <div style="flex: 1; min-width: 280px; display: flex; flex-direction: column; gap: 12px;">
+                                    <h4 style="margin: 0; color: #eab308; font-size: 1rem;"><i class="fa-solid fa-shield-halved"></i> Representation Stress Test Mode</h4>
+                                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                                        
+                                        <div>
+                                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
+                                                <span style="font-size: 0.75rem; opacity: 0.8;">Market Saturation Resilience</span>
+                                                <span id="stress-saturation-lbl" style="font-size: 0.75rem; font-weight: bold; color: #eab308;">0%</span>
+                                            </div>
+                                            <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.06); border-radius: 5px; overflow: hidden;">
+                                                <div id="stress-saturation-bar" style="height: 100%; width: 0%; background: #eab308; transition: width 0.8s ease-out;"></div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div>
+                                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
+                                                <span style="font-size: 0.75rem; opacity: 0.8;">AI Search Engine Dominance</span>
+                                                <span id="stress-search-lbl" style="font-size: 0.75rem; font-weight: bold; color: #eab308;">0%</span>
+                                            </div>
+                                            <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.06); border-radius: 5px; overflow: hidden;">
+                                                <div id="stress-search-bar" style="height: 100%; width: 0%; background: #eab308; transition: width 0.8s ease-out;"></div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div>
+                                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
+                                                <span style="font-size: 0.75rem; opacity: 0.8;">Low Attention Economy Retention</span>
+                                                <span id="stress-attention-lbl" style="font-size: 0.75rem; font-weight: bold; color: #eab308;">0%</span>
+                                            </div>
+                                            <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.06); border-radius: 5px; overflow: hidden;">
+                                                <div id="stress-attention-bar" style="height: 100%; width: 0%; background: #eab308; transition: width 0.8s ease-out;"></div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div>
+                                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
+                                                <span style="font-size: 0.75rem; opacity: 0.8;">Ethical/Regulation Compliance</span>
+                                                <span id="stress-ethical-lbl" style="font-size: 0.75rem; font-weight: bold; color: #eab308;">0%</span>
+                                            </div>
+                                            <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.06); border-radius: 5px; overflow: hidden;">
+                                                <div id="stress-ethical-bar" style="height: 100%; width: 0%; background: #eab308; transition: width 0.8s ease-out;"></div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Forecasting Section -->
+                <div class="modal-section forecasting-panel" style="border-top: 1px rgba(255,255,255,0.1) solid; padding-top: 20px; margin-top: 25px;">
+                    <h3 style="color: var(--primary-cyan); font-size: 1.1rem; margin-bottom: 10px;"><i class="fa-solid fa-chart-line"></i> Projected Store Impact Forecast</h3>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 15px;">
+                        <div style="background: rgba(255,255,255,0.03); border-radius: 10px; padding: 10px; text-align: center; border: 1px rgba(255,255,255,0.05) solid;">
+                            <span id="forecast-conversion-val" style="font-size: 1.5rem; font-weight: bold; color: #10b981; display: block;">+18.5%</span>
+                            <span style="font-size: 0.75rem; opacity: 0.7;">Conversion Lift</span>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.03); border-radius: 10px; padding: 10px; text-align: center; border: 1px rgba(255,255,255,0.05) solid;">
+                            <span id="forecast-traffic-val" style="font-size: 1.5rem; font-weight: bold; color: var(--primary-cyan); display: block;">+25.0%</span>
+                            <span style="font-size: 0.75rem; opacity: 0.7;">SEO Traffic Lift</span>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.03); border-radius: 10px; padding: 10px; text-align: center; border: 1px rgba(255,255,255,0.05) solid;">
+                            <span id="forecast-bounce-val" style="font-size: 1.5rem; font-weight: bold; color: #f59e0b; display: block;">-12.0%</span>
+                            <span style="font-size: 0.75rem; opacity: 0.7;">Bounce Rate</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Mockup Optimizer Modal -->
+    <div id="mockup-modal" class="modal-overlay" onclick="closeMockupOnOverlay(event)">
+        <div class="glass-panel modal-content mockup-modal-content" style="max-width: 800px; width: 90%;">
+            <button class="close-modal-btn" onclick="closeMockupModal()">&times;</button>
+            <h2><i class="fa-solid fa-image"></i> Studio Mockup Optimizer</h2>
+            <p class="modal-subtitle">AI background replacement and placement engine</p>
+            
+            <div class="mockup-modal-grid" style="display: flex; gap: 25px; margin-top: 20px; flex-wrap: wrap;">
+                <div class="mockup-preview-panel" style="flex: 1; min-width: 280px;">
+                    <h3 style="margin-top: 0; font-size: 1.1rem; border-bottom: 1px rgba(255,255,255,0.1) solid; padding-bottom: 8px;">Current Preview</h3>
+                    <div class="mockup-preview-container" style="height: 250px; border-radius: 12px; overflow: hidden; background: rgba(0,0,0,0.2); border: 1px rgba(255,255,255,0.1) solid; display: flex; align-items: center; justify-content: center; position: relative;">
+                        <img id="mockup-current-img" src="" alt="Product Preview" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                        <div id="mockup-loading" class="tab-loading-state" style="display: none; position: absolute; background: rgba(11,15,25,0.9); top: 0; left: 0; width: 100%; height: 100%; flex-direction: column; align-items: center; justify-content: center;">
+                            <div class="spinner"></div>
+                            <p style="margin-top: 10px; font-size: 0.9rem;">Blending mockup scenes...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mockup-options-panel" style="flex: 1.2; min-width: 320px; display: flex; flex-direction: column;">
+                    <h3 style="margin-top: 0; font-size: 1.1rem; border-bottom: 1px rgba(255,255,255,0.1) solid; padding-bottom: 8px;">Select Studio Style Backdrop</h3>
+                    <div class="mockup-presets-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; flex: 1;">
+                        <div class="preset-card active" data-preset="marble" onclick="selectPreset(this)" style="background: rgba(255,255,255,0.03); border: 1px rgba(255,255,255,0.1) solid; border-radius: 10px; padding: 12px; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: all 0.2s;">
+                            <div class="preset-icon" style="color: var(--primary-cyan); font-size: 1.3rem;"><i class="fa-solid fa-gem"></i></div>
+                            <div class="preset-info" style="display: flex; flex-direction: column;">
+                                <strong style="font-size: 0.9rem;">Minimalist Marble</strong>
+                                <span style="font-size: 0.75rem; opacity: 0.7;">Luxury countertop</span>
+                            </div>
+                        </div>
+                        <div class="preset-card" data-preset="neon" onclick="selectPreset(this)" style="background: rgba(255,255,255,0.03); border: 1px rgba(255,255,255,0.1) solid; border-radius: 10px; padding: 12px; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: all 0.2s;">
+                            <div class="preset-icon" style="color: var(--primary-purple); font-size: 1.3rem;"><i class="fa-solid fa-bolt"></i></div>
+                            <div class="preset-info" style="display: flex; flex-direction: column;">
+                                <strong style="font-size: 0.9rem;">Studio Neon</strong>
+                                <span style="font-size: 0.75rem; opacity: 0.7;">Cyberpunk glow</span>
+                            </div>
+                        </div>
+                        <div class="preset-card" data-preset="beach" onclick="selectPreset(this)" style="background: rgba(255,255,255,0.03); border: 1px rgba(255,255,255,0.1) solid; border-radius: 10px; padding: 12px; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: all 0.2s;">
+                            <div class="preset-icon" style="color: #f59e0b; font-size: 1.3rem;"><i class="fa-solid fa-umbrella-beach"></i></div>
+                            <div class="preset-info" style="display: flex; flex-direction: column;">
+                                <strong style="font-size: 0.9rem;">Tropical Beach</strong>
+                                <span style="font-size: 0.75rem; opacity: 0.7;">Sunset sand setting</span>
+                            </div>
+                        </div>
+                        <div class="preset-card" data-preset="wood" onclick="selectPreset(this)" style="background: rgba(255,255,255,0.03); border: 1px rgba(255,255,255,0.1) solid; border-radius: 10px; padding: 12px; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: all 0.2s;">
+                            <div class="preset-icon" style="color: #10b981; font-size: 1.3rem;"><i class="fa-solid fa-tree"></i></div>
+                            <div class="preset-info" style="display: flex; flex-direction: column;">
+                                <strong style="font-size: 0.9rem;">Organic Wood</strong>
+                                <span style="font-size: 0.75rem; opacity: 0.7;">Rustic office desk</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="action-btn generate-mockup-btn" onclick="generateMockup()" style="margin-top: 20px; background: var(--gradient-cyan); color: #0b0f19; font-weight: bold; width: 100%; border-radius: 8px; padding: 14px; font-size: 1rem; border: none; cursor: pointer; letter-spacing: 0.5px; box-shadow: 0 0 20px rgba(0, 240, 255, 0.25);">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Background Swap
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Batch Action Bar -->
+    <div id="batch-action-bar" class="batch-action-bar" style="display: none; position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px rgba(0, 240, 255, 0.25) solid; border-radius: 50px; padding: 10px 25px; align-items: center; gap: 20px; box-shadow: 0 10px 40px rgba(0, 240, 255, 0.15); z-index: 100;">
+        <div class="batch-bar-content" style="display: flex; align-items: center; gap: 20px; width: 100%;">
+            <span id="batch-count-text" style="font-weight: 500; font-size: 0.95rem; color: #fff;">0 products selected</span>
+            <button class="action-btn" onclick="runBatchOptimize()" style="background: var(--gradient-cyan); color: #0b0f19; font-weight: bold; border-radius: 50px; padding: 8px 20px; font-size: 0.9rem; border: none; display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                <i class="fa-solid fa-bolt"></i> Batch Auto-Optimize
+            </button>
+        </div>
+    </div>
+
+    <!-- Conversational AI Assistant (Chatbot Widget) -->
+    <div id="chatbot-widget" class="chatbot-container collapsed">
+        <!-- Chat Header -->
+        <div class="chatbot-header" onclick="toggleChat()">
+            <div class="bot-info">
+                <div class="chatbot-icon-container">
+                    <i class="fa-solid fa-robot"></i>
+                    <span class="online-indicator"></span>
+                </div>
+                <div>
+                    <h3>AgentLens AI Advisor</h3>
+                    <p>Shopify Store Assistant</p>
+                </div>
+            </div>
+            <button class="chat-toggle-btn"><i id="chat-chevron" class="fa-solid fa-chevron-up"></i></button>
+        </div>
+        
+        <!-- Chat Body -->
+        <div class="chatbot-body">
+            <div id="chat-messages" class="chat-messages-container">
+                <div class="chat-message bot">
+                    <div class="message-content">
+                        Hello! I am your <strong>AgentLens Store Optimizer Agent</strong>. 🤖<br><br>
+                        I can help you review your Shopify product SEO structure and trust signals. Click one of the quick questions below or type yours!
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="chat-quick-actions">
+                <button class="quick-btn" onclick="sendQuickMessage('Why is my score low?')">Why is my score low?</button>
+                <button class="quick-btn" onclick="sendQuickMessage('How can I improve?')">How can I improve?</button>
+            </div>
+            
+            <!-- Chat Input -->
+            <form id="chat-form" class="chat-input-container" onsubmit="handleChatSubmit(event)">
+                <input type="text" id="chat-input" placeholder="Ask about your Shopify store..." autocomplete="off">
+                <button type="submit" class="chat-send-btn"><i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- AI Agent Console / Terminal Widget -->
+    <div id="agent-terminal-widget" class="agent-terminal-container collapsed" style="position: fixed; bottom: 30px; left: 30px; width: 350px; background: rgba(8, 12, 24, 0.92); border: 1px solid rgba(0, 240, 255, 0.25); border-radius: 16px; box-shadow: 0 10px 40px rgba(0,240,255,0.15); font-family: 'Courier New', monospace; color: #fff; z-index: 999; overflow: hidden; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);">
+        <div class="terminal-header" style="background: rgba(255,255,255,0.04); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.06); cursor: pointer;" onclick="toggleTerminal()">
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="width: 8px; height: 8px; border-radius: 50%; background: #00f0ff; box-shadow: 0 0 8px #00f0ff; display: inline-block; animation: pulseStatus 1.5s infinite;"></span>
+                <span style="font-size: 0.82rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--primary-cyan); font-family: var(--font-heading);">AI Agent Operations Feed</span>
+            </div>
+            <button style="background: none; border: none; color: var(--text-muted); cursor: pointer;"><i id="terminal-chevron" class="fa-solid fa-chevron-up"></i></button>
+        </div>
+        <div id="terminal-body" class="terminal-body" style="height: 0; transition: height 0.3s ease; display: flex; flex-direction: column; background: #040710;">
+            <div id="terminal-log-content" style="flex: 1; padding: 14px; font-size: 0.76rem; line-height: 1.5; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; max-height: 200px;">
+                <div style="color: #64748b;">[System] AgentLens AI Engine online. Ready for task dispatch.</div>
+            </div>
+            <div style="padding: 10px 14px; background: rgba(0,0,0,0.3); border-top: 1px solid rgba(255,255,255,0.04); font-size: 0.72rem; color: #64748b; display: flex; justify-content: space-between;">
+                <span>Thread: Main_Orchestrator</span>
+                <span>Tps: 14.2</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Javascript -->
+    <script>
+        let chatHistory = [];
+        let currentSelectedProductId = null;
+        let currentMockupProductId = null;
+        let marketingCopyCached = null;
+        let representationLabCached = null;
+        
+        // Terminal functionality
+        function toggleTerminal(forceOpen = false) {
+            const widget = document.getElementById('agent-terminal-widget');
+            const body = document.getElementById('terminal-body');
+            const icon = document.getElementById('terminal-chevron');
+            
+            if (widget.classList.contains('collapsed') || forceOpen) {
+                widget.classList.remove('collapsed');
+                body.style.height = '240px';
+                icon.className = 'fa-solid fa-chevron-down';
+            } else {
+                widget.classList.add('collapsed');
+                body.style.height = '0';
+                icon.className = 'fa-solid fa-chevron-up';
+            }
+        }
+        
+        function logToTerminal(message, type = 'info') {
+            const logContent = document.getElementById('terminal-log-content');
+            if (logContent) {
+                const logLine = document.createElement('div');
+                let color = '#fff';
+                if (type === 'system') color = '#64748b';
+                else if (type === 'action') color = '#00f0ff';
+                else if (type === 'warn') color = '#f43f5e';
+                else if (type === 'success') color = '#10b981';
+                
+                logLine.style.color = color;
+                logLine.innerHTML = message;
+                logContent.appendChild(logLine);
+                logContent.scrollTop = logContent.scrollHeight;
+            }
+        }
+
+        function simulateAgentExecution(productTitle, issues, finalCallback) {
+            toggleTerminal(true);
+            logToTerminal(`[System] Optimization requested for: <strong>${productTitle}</strong>`, 'system');
+            
+            setTimeout(() => {
+                logToTerminal(`[Diagnostics] Scanning descriptions, cancellation policies, and media counts...`, 'info');
+            }, 400);
+            
+            setTimeout(() => {
+                if (issues.length) {
+                    logToTerminal(`[Diagnostics] Found ${issues.length} gaps to address:`, 'warn');
+                    issues.forEach(i => logToTerminal(` - Warning: ${i}`, 'warn'));
+                } else {
+                    logToTerminal(`[Diagnostics] Basic health review completed. Standardizing content format.`, 'info');
+                }
+            }, 950);
+            
+            setTimeout(() => {
+                logToTerminal(`[Agent: Copywriter] Drafting SEO-optimized meta-titles and enriched descriptions...`, 'action');
+            }, 1600);
+            
+            setTimeout(() => {
+                logToTerminal(`[Agent: AssetManager] Injecting high-impact product imagery and policy segments...`, 'action');
+            }, 2200);
+            
+            setTimeout(() => {
+                logToTerminal(`[Shopify API] Sending GraphQL update mutation payload...`, 'system');
+            }, 2850);
+            
+            setTimeout(() => {
+                logToTerminal(`[Success] Changes synchronized with remote catalog. Optimization Complete!`, 'success');
+                finalCallback();
+            }, 3400);
+        }
+
+        function simulateBatchAgentExecution(productTitles, finalCallback) {
+            toggleTerminal(true);
+            logToTerminal(`[System] Batch optimization requested for ${productTitles.length} items:`, 'system');
+            productTitles.forEach(t => logToTerminal(` - Queued: <strong>${t}</strong>`, 'info'));
+            
+            setTimeout(() => {
+                logToTerminal(`[Orchestrator] Spawning parallel optimization worker threads...`, 'action');
+            }, 500);
+            
+            setTimeout(() => {
+                logToTerminal(`[Agent: Copywriter] Re-writing SEO structures & missing policies in parallel...`, 'action');
+            }, 1200);
+            
+            setTimeout(() => {
+                logToTerminal(`[Agent: AssetManager] Sourcing studio backdrops for media coverage...`, 'action');
+            }, 1900);
+            
+            setTimeout(() => {
+                logToTerminal(`[Shopify API] Dispatching batch mutation transaction payload...`, 'system');
+            }, 2600);
+            
+            setTimeout(() => {
+                logToTerminal(`[Success] Batch optimization finalized. All stores synced.`, 'success');
+                finalCallback();
+            }, 3200);
+        }
+
+        // TOAST NOTIFICATIONS
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast glass-panel ${type}`;
+            
+            let icon = '<i class="fa-solid fa-check-circle icon-green"></i>';
+            if (type === 'error') {
+                icon = '<i class="fa-solid fa-exclamation-circle icon-red"></i>';
+            } else if (type === 'loading') {
+                icon = '<i class="fa-solid fa-circle-notch fa-spin icon-cyan"></i>';
+            }
+            
+            toast.innerHTML = `
+                <div class="toast-content">
+                    ${icon}
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            container.appendChild(toast);
+            
+            // Trigger animation
+            setTimeout(() => toast.classList.add('visible'), 50);
+            
+            // Remove after 4 seconds
+            if (type !== 'loading') {
+                setTimeout(() => {
+                    toast.classList.remove('visible');
+                    setTimeout(() => toast.remove(), 300);
+                }, 4000);
+            }
+            
+            return toast;
+        }
+
+        // PRIORITIZED ACTION PLAN RENDERER (JS SIDE)
+        function renderCategorizedIssues(issues) {
+            if (!issues || !issues.length) {
+                return `
+                    <div class="no-issues">
+                        <i class="fa-solid fa-shield-check"></i>
+                        <p>Fully optimized! No issues detected.</p>
+                    </div>
+                `;
+            }
+            
+            const high = [];
+            const medium = [];
+            const low = [];
+            
+            issues.forEach(issue => {
+                const issueLower = issue.toLowerCase();
+                if (issueLower.includes('return') || 
+                    issueLower.includes('refund') || 
+                    issueLower.includes('cancellation') || 
+                    issueLower.includes('shipping') || 
+                    issueLower.includes('product type') || 
+                    issueLower.includes('no product images')) {
+                    high.push(issue);
+                } else if (issueLower.includes('too short') || 
+                           issueLower.includes('one product image') || 
+                           issueLower.includes('more product images') ||
+                           issueLower.includes('tags')) {
+                    medium.push(issue);
+                } else {
+                    low.push(issue);
+                }
+            });
+            
+            let html = `<h4 class="issues-title"><i class="fa-solid fa-list-check"></i> Prioritized Action Plan</h4>`;
+            html += `<div class="priority-sections" style="display: flex; flex-direction: column; gap: 12px; margin-top: 8px;">`;
+            
+            if (high.length) {
+                html += `
+                    <div class="priority-section high-sec" style="background: rgba(244, 63, 94, 0.04); border-left: 3px solid #f43f5e; padding: 6px 10px; border-radius: 4px;">
+                        <div style="font-size: 0.7rem; font-weight: bold; color: #f43f5e; text-transform: uppercase; margin-bottom: 4px; display: flex; align-items: center; gap: 4px;">
+                            <i class="fa-solid fa-circle-exclamation"></i> Critical Actions (High)
+                        </div>
+                        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px;">`;
+                high.forEach(issue => {
+                    html += `
+                        <li style="font-size: 0.75rem; color: #fda4af; display: flex; align-items: flex-start; gap: 4px;">
+                            <span style="color: #f43f5e;">•</span> <span>${issue}</span>
+                        </li>`;
+                });
+                html += `</ul></div>`;
+            }
+            
+            if (medium.length) {
+                html += `
+                    <div class="priority-section med-sec" style="background: rgba(234, 179, 8, 0.04); border-left: 3px solid #eab308; padding: 6px 10px; border-radius: 4px;">
+                        <div style="font-size: 0.7rem; font-weight: bold; color: #eab308; text-transform: uppercase; margin-bottom: 4px; display: flex; align-items: center; gap: 4px;">
+                            <i class="fa-solid fa-triangle-exclamation"></i> Recommended Fixes (Med)
+                        </div>
+                        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px;">`;
+                medium.forEach(issue => {
+                    html += `
+                        <li style="font-size: 0.75rem; color: #fef08a; display: flex; align-items: flex-start; gap: 4px;">
+                            <span style="color: #eab308;">•</span> <span>${issue}</span>
+                        </li>`;
+                });
+                html += `</ul></div>`;
+            }
+            
+            if (low.length) {
+                html += `
+                    <div class="priority-section low-sec" style="background: rgba(59, 130, 246, 0.04); border-left: 3px solid #3b82f6; padding: 6px 10px; border-radius: 4px;">
+                        <div style="font-size: 0.7rem; font-weight: bold; color: #3b82f6; text-transform: uppercase; margin-bottom: 4px; display: flex; align-items: center; gap: 4px;">
+                            <i class="fa-solid fa-circle-info"></i> Optional Tweaks (Low)
+                        </div>
+                        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px;">`;
+                low.forEach(issue => {
+                    html += `
+                        <li style="font-size: 0.75rem; color: #93c5fd; display: flex; align-items: flex-start; gap: 4px;">
+                            <span style="color: #3b82f6;">•</span> <span>${issue}</span>
+                        </li>`;
+                });
+                html += `</ul></div>`;
+            }
+            
+            html += `</div>`;
+            return html;
+        }
+
+        // AI RECOMMENDATION DRAWER
+        function showRecommendations(productId, productTitle) {
+            const modal = document.getElementById('recommendations-modal');
+            const titleElem = document.getElementById('modal-product-title');
+            const loadingElem = document.getElementById('modal-loading');
+            const dataElem = document.getElementById('modal-data');
+            const tabsBar = document.getElementById('modal-tabs-bar');
+            
+            currentSelectedProductId = productId;
+            representationLabCached = null;
+            titleElem.textContent = `Advice for "${productTitle}"`;
+            loadingElem.style.display = 'flex';
+            dataElem.style.display = 'none';
+            tabsBar.style.display = 'none';
+            modal.classList.add('active');
+            
+            // Reset tab bar active tab to SEO Advice
+            const tabButtons = document.querySelectorAll('.modal-tab-btn');
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabButtons[0].classList.add('active');
+            
+            const panels = document.querySelectorAll('.tab-panel');
+            panels.forEach(p => p.style.display = 'none');
+            document.getElementById('seo-tab-content').style.display = 'block';
+            
+            // Reset competitor section
+            document.getElementById('competitor-url').value = '';
+            document.getElementById('competitor-data').style.display = 'none';
+            
+            fetch(`/api/recommend/${productId}`)
+                .then(res => {
+                    if (!res.ok) throw new Error("Failed to load recommendations");
+                    return res.json();
+                })
+                .then(data => {
+                    // Populate Prioritized Action Plan inside Modal
+                    const modalPrioritizedContainer = document.getElementById('modal-prioritized-issues');
+                    if (modalPrioritizedContainer) {
+                        modalPrioritizedContainer.innerHTML = renderCategorizedIssues(data.issues);
+                    }
+
+                    // Populate keywords
+                    const kwContainer = document.getElementById('rec-keywords');
+                    kwContainer.innerHTML = '';
+                    if (data.keywords && data.keywords.length) {
+                        data.keywords.forEach(kw => {
+                            const pill = document.createElement('span');
+                            pill.className = 'kw-pill';
+                            pill.innerHTML = `<i class="fa-solid fa-chart-simple"></i> ${kw}`;
+                            kwContainer.appendChild(pill);
+                        });
+                    } else {
+                        kwContainer.innerHTML = '<span class="empty-state">No keywords suggested</span>';
+                    }
+
+                    // Populate SEO Phrases
+                    const seoContainer = document.getElementById('rec-seo-phrases');
+                    seoContainer.innerHTML = '';
+                    if (data.seo_phrases && data.seo_phrases.length) {
+                        data.seo_phrases.forEach(phrase => {
+                            const item = document.createElement('li');
+                            item.innerHTML = `<i class="fa-solid fa-magnifying-glass icon-cyan"></i> ${phrase}`;
+                            seoContainer.appendChild(item);
+                        });
+                    } else {
+                        seoContainer.innerHTML = '<li class="empty-state">No SEO phrases suggested</li>';
+                    }
+
+                    // Populate Tags
+                    const tagContainer = document.getElementById('rec-tags');
+                    tagContainer.innerHTML = '';
+                    if (data.suggested_tags && data.suggested_tags.length) {
+                        data.suggested_tags.forEach(tag => {
+                            const pill = document.createElement('span');
+                            pill.className = 'tag-pill';
+                            pill.innerHTML = `<i class="fa-solid fa-tag"></i> ${tag}`;
+                            tagContainer.appendChild(pill);
+                        });
+                    } else {
+                        tagContainer.innerHTML = '<span class="empty-state">No tags suggested</span>';
+                    }
+
+                    // Populate Description Suggestions
+                    const descContainer = document.getElementById('rec-desc-suggestions');
+                    descContainer.innerHTML = data.description_suggestions 
+                        ? data.description_suggestions.replace(/\n/g, '<br>')
+                        : 'No description suggestions available.';
+
+                    // Populate Score Explanation
+                    const expContainer = document.getElementById('rec-score-explanation');
+                    expContainer.textContent = data.score_explanation || 'No explanation available.';
+
+                    // Populate Description Compare
+                    const origDesc = data.original_description || '';
+                    const optDesc = data.optimized_description || '';
+                    
+                    document.getElementById('desc-orig-preview').innerHTML = origDesc || '<p style="opacity: 0.5; font-style: italic;">No description set</p>';
+                    document.getElementById('desc-orig-raw').textContent = origDesc || 'No description set';
+                    
+                    document.getElementById('desc-opt-preview').innerHTML = optDesc;
+                    document.getElementById('desc-opt-raw').textContent = optDesc;
+                    
+                    // Word counts helper
+                    const countWords = (str) => {
+                        if (!str) return 0;
+                        // Strip html tags to count words in clean text
+                        const clean = str.replace(/<\/?[^>]+(>|$)/g, " ");
+                        return clean.trim().split(/\s+/).filter(Boolean).length;
+                    };
+                    document.getElementById('desc-orig-words-lbl').textContent = `${countWords(origDesc)} words`;
+                    document.getElementById('desc-opt-words-lbl').textContent = `${countWords(optDesc)} words`;
+                    
+                    // Reset to rendered mode
+                    setDescViewMode('rendered');
+
+                    // Real-Time Analytics Simulation
+                    const score = data.current_score || 50;
+                    const liftConversion = Math.max(1.5, ((100 - score) * 0.35)).toFixed(1);
+                    const liftTraffic = Math.max(2.0, ((100 - score) * 0.5)).toFixed(1);
+                    const dropBounce = Math.max(1.0, ((100 - score) * 0.2)).toFixed(1);
+                    
+                    document.getElementById('forecast-conversion-val').textContent = `+${liftConversion}%`;
+                    document.getElementById('forecast-traffic-val').textContent = `+${liftTraffic}%`;
+                    document.getElementById('forecast-bounce-val').textContent = `-${dropBounce}%`;
+
+                    // Show content
+                    loadingElem.style.display = 'none';
+                    dataElem.style.display = 'block';
+                    tabsBar.style.display = 'flex';
+                })
+                .catch(err => {
+                    console.error(err);
+                    showToast("Error loading recommendations", "error");
+                    closeRecommendations();
+                });
+        }
+
+        function closeRecommendations() {
+            document.getElementById('recommendations-modal').classList.remove('active');
+        }
+
+        function closeRecommendationsOnOverlay(event) {
+            if (event.target === document.getElementById('recommendations-modal')) {
+                closeRecommendations();
+            }
+        }
+
+        // TAB SWITCHER
+        function switchModalTab(event, tabId) {
+            const tabButtons = document.querySelectorAll('.modal-tab-btn');
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            if (event) {
+                event.currentTarget.classList.add('active');
+            }
+            
+            const panels = document.querySelectorAll('.tab-panel');
+            panels.forEach(p => p.style.display = 'none');
+            
+            const targetPanel = document.getElementById(tabId);
+            if (targetPanel) {
+                targetPanel.style.display = 'block';
+            }
+            
+            if (tabId === 'marketing-tab-content' && currentSelectedProductId) {
+                loadMarketingCopy();
+            } else if (tabId === 'representation-lab-tab-content' && currentSelectedProductId) {
+                loadRepresentationLab();
+            }
+        }
+
+        // TOGGLE DESCRIPTION VIEW MODE
+        let currentDescViewMode = 'rendered';
+        function setDescViewMode(mode) {
+            currentDescViewMode = mode;
+            const renderedBtn = document.getElementById('desc-view-rendered-btn');
+            const rawBtn = document.getElementById('desc-view-raw-btn');
+            
+            const origPreview = document.getElementById('desc-orig-preview');
+            const origRaw = document.getElementById('desc-orig-raw');
+            const optPreview = document.getElementById('desc-opt-preview');
+            const optRaw = document.getElementById('desc-opt-raw');
+            
+            if (mode === 'rendered') {
+                renderedBtn.classList.add('active');
+                rawBtn.classList.remove('active');
+                origPreview.style.display = 'block';
+                origRaw.style.display = 'none';
+                optPreview.style.display = 'block';
+                optRaw.style.display = 'none';
+            } else {
+                renderedBtn.classList.remove('active');
+                rawBtn.classList.add('active');
+                origPreview.style.display = 'none';
+                origRaw.style.display = 'block';
+                optPreview.style.display = 'none';
+                optRaw.style.display = 'block';
+            }
+        }
+
+        // LOAD REPRESENTATION LAB
+        function loadRepresentationLab() {
+            const loading = document.getElementById('lab-loading');
+            const dataContainer = document.getElementById('lab-data');
+            
+            if (representationLabCached === currentSelectedProductId) {
+                return;
+            }
+            
+            loading.style.display = 'flex';
+            dataContainer.style.display = 'none';
+            
+            fetch(`/api/representation-lab/${currentSelectedProductId}`)
+                .then(res => {
+                    if (!res.ok) throw new Error("Failed to load representation lab diagnostics");
+                    return res.json();
+                })
+                .then(data => {
+                    // 1. Digital Twin
+                    document.getElementById('twin-google-val').textContent = data.digital_twin?.google_ai || 'N/A';
+                    document.getElementById('twin-amazon-val').textContent = data.digital_twin?.amazon_ai || 'N/A';
+                    document.getElementById('twin-chatgpt-val').textContent = data.digital_twin?.chatgpt_ai || 'N/A';
+                    
+                    // 2. Identity Drift
+                    const driftPct = data.drift_detector?.deviation_pct || 0;
+                    document.getElementById('drift-percent-val').textContent = `${driftPct}%`;
+                    document.getElementById('drift-voice-val').textContent = data.drift_detector?.brand_voice || 'Neutral';
+                    document.getElementById('drift-explain-val').textContent = data.drift_detector?.drift_explanation || '';
+                    
+                    // Update circular progress (circumference is 175.9 for r=28)
+                    const circumference = 175.9;
+                    const offset = circumference * (1 - driftPct / 100);
+                    document.getElementById('drift-progress-circle').style.strokeDashoffset = offset;
+                    
+                    // Psychology tags
+                    const biasesContainer = document.getElementById('psych-biases-tags');
+                    biasesContainer.innerHTML = '';
+                    if (data.psychology?.biases_detected && data.psychology.biases_detected.length) {
+                        data.psychology.biases_detected.forEach(bias => {
+                            const badge = document.createElement('span');
+                            badge.className = 'tag-pill';
+                            badge.style.fontSize = '0.7rem';
+                            badge.style.padding = '2px 6px';
+                            badge.style.background = 'rgba(168,85,247,0.1)';
+                            badge.style.border = '1px solid rgba(168,85,247,0.25)';
+                            badge.style.color = '#c084fc';
+                            badge.innerHTML = `<i class="fa-solid fa-circle" style="font-size:0.4rem; vertical-align:middle; margin-right:3px;"></i> ${bias}`;
+                            biasesContainer.appendChild(badge);
+                        });
+                    } else {
+                        biasesContainer.innerHTML = '<span style="font-size: 0.75rem; opacity: 0.5;">None detected</span>';
+                    }
+                    
+                    document.getElementById('psych-tone-val').textContent = data.psychology?.emotional_tone || 'Standard';
+                    
+                    // 3. Multi-Agent Debate
+                    const debateContainer = document.getElementById('debate-chat-container');
+                    debateContainer.innerHTML = '';
+                    if (data.debate && data.debate.length) {
+                        data.debate.forEach(msg => {
+                            let bg, border, color, icon;
+                            if (msg.agent === 'Optimizer') {
+                                bg = 'rgba(168, 85, 247, 0.04)';
+                                border = 'rgba(168, 85, 247, 0.2)';
+                                color = '#c084fc';
+                                icon = 'fa-solid fa-wand-magic-sparkles';
+                            } else if (msg.agent === 'Critic') {
+                                bg = 'rgba(244, 63, 94, 0.04)';
+                                border = 'rgba(244, 63, 94, 0.2)';
+                                color = '#f43f5e';
+                                icon = 'fa-solid fa-shield-virus';
+                            } else { // Risk Auditor
+                                bg = 'rgba(234, 179, 8, 0.04)';
+                                border = 'rgba(234, 179, 8, 0.2)';
+                                color = '#fbbf24';
+                                icon = 'fa-solid fa-triangle-exclamation';
+                            }
+                            
+                            const bubble = document.createElement('div');
+                            bubble.style.background = bg;
+                            bubble.style.border = `1px solid ${border}`;
+                            bubble.style.borderRadius = '8px';
+                            bubble.style.padding = '10px';
+                            bubble.style.display = 'flex';
+                            bubble.style.flexDirection = 'column';
+                            bubble.style.gap = '4px';
+                            
+                            bubble.innerHTML = `
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-size: 0.78rem; font-weight: bold; color: ${color};"><i class="${icon}"></i> ${msg.agent} Agent</span>
+                                    <span style="font-size: 0.65rem; opacity: 0.5; background: rgba(255,255,255,0.05); padding: 1px 5px; border-radius: 4px;">ACTIVE</span>
+                                </div>
+                                <p style="font-size: 0.82rem; margin: 0; line-height: 1.4; opacity: 0.9;">${msg.message}</p>
+                            `;
+                            debateContainer.appendChild(bubble);
+                        });
+                    }
+                    
+                    // 4. Cultural adaptation
+                    document.getElementById('cultural-offense-val').textContent = data.cultural?.offense_check || 'Clear';
+                    document.getElementById('cultural-slang-val').textContent = data.cultural?.regional_slang || 'Standard vocabulary';
+                    document.getElementById('cultural-tier-val').textContent = data.cultural?.tier_adaptation || 'Universal appeal';
+                    
+                    // 5. Stress test bars
+                    const satVal = data.stress_test?.market_saturation || 50;
+                    document.getElementById('stress-saturation-lbl').textContent = `${satVal}%`;
+                    document.getElementById('stress-saturation-bar').style.width = `${satVal}%`;
+                    
+                    const searchVal = data.stress_test?.ai_search_dominance || 50;
+                    document.getElementById('stress-search-lbl').textContent = `${searchVal}%`;
+                    document.getElementById('stress-search-bar').style.width = `${searchVal}%`;
+                    
+                    const attentionVal = data.stress_test?.low_attention || 50;
+                    document.getElementById('stress-attention-lbl').textContent = `${attentionVal}%`;
+                    document.getElementById('stress-attention-bar').style.width = `${attentionVal}%`;
+                    
+                    const ethicalVal = data.stress_test?.ethical_reg || 50;
+                    document.getElementById('stress-ethical-lbl').textContent = `${ethicalVal}%`;
+                    document.getElementById('stress-ethical-bar').style.width = `${ethicalVal}%`;
+                    
+                    // Cache and show
+                    representationLabCached = currentSelectedProductId;
+                    loading.style.display = 'none';
+                    dataContainer.style.display = 'block';
+                })
+                .catch(err => {
+                    console.error(err);
+                    showToast("Error starting Representation Lab diagnostics", "error");
+                    loading.style.display = 'none';
+                });
+        }
+
+        // OPEN REPRESENTATION LAB AND SWITCH TAB
+        function openRepresentationLab(productId, productTitle) {
+            showRecommendations(productId, productTitle);
+            
+            // Periodically check if recommendations data finished loading, then trigger click
+            let attempts = 0;
+            const checkLoaded = setInterval(() => {
+                attempts++;
+                const tabsBar = document.getElementById('modal-tabs-bar');
+                const loading = document.getElementById('modal-loading');
+                if (loading && loading.style.display === 'none' && tabsBar && tabsBar.style.display === 'flex') {
+                    clearInterval(checkLoaded);
+                    switchModalTab(null, 'representation-lab-tab-content');
+                    loadRepresentationLab(); // trigger load
+                    
+                    // Mark the tab button active
+                    const tabButtons = document.querySelectorAll('.modal-tab-btn');
+                    tabButtons.forEach(btn => {
+                        if (btn.innerText.includes('Representation Lab')) {
+                            btn.classList.add('active');
+                        } else {
+                            btn.classList.remove('active');
+                        }
+                    });
+                }
+                if (attempts > 100) {
+                    clearInterval(checkLoaded);
+                }
+            }, 100);
+        }
+
+        // LOAD MARKETING COPY
+        function loadMarketingCopy() {
+            const loading = document.getElementById('marketing-loading');
+            const container = document.getElementById('marketing-data');
+            
+            if (marketingCopyCached === currentSelectedProductId) {
+                return;
+            }
+            
+            loading.style.display = 'flex';
+            container.style.display = 'none';
+            
+            fetch(`/api/marketing-copy/${currentSelectedProductId}`)
+                .then(res => {
+                    if (!res.ok) throw new Error("Failed to generate marketing copy");
+                    return res.json();
+                })
+                .then(data => {
+                    document.getElementById('copy-instagram').textContent = data.instagram || '';
+                    document.getElementById('copy-google-headline').textContent = data.google_ad?.headline || '';
+                    document.getElementById('copy-google-desc').textContent = data.google_ad?.description || '';
+                    document.getElementById('copy-email-subject').textContent = `Subject: ${data.email?.subject || ''}`;
+                    document.getElementById('copy-email-body').textContent = data.email?.body || '';
+                    
+                    marketingCopyCached = currentSelectedProductId;
+                    loading.style.display = 'none';
+                    container.style.display = 'block';
+                })
+                .catch(err => {
+                    console.error(err);
+                    showToast("Error generating marketing copy", "error");
+                    loading.style.display = 'none';
+                });
+        }
+
+        // COPY UTILITIES
+        function copyText(elementId) {
+            const text = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                showToast("Copied to clipboard!", "success");
+            });
+        }
+
+        function copyGoogleAd() {
+            const headline = document.getElementById('copy-google-headline').textContent;
+            const desc = document.getElementById('copy-google-desc').textContent;
+            navigator.clipboard.writeText(`${headline}\n${desc}`).then(() => {
+                showToast("Google Ad copy copied!", "success");
+            });
+        }
+
+        function copyEmailCopy() {
+            const subject = document.getElementById('copy-email-subject').textContent;
+            const body = document.getElementById('copy-email-body').textContent;
+            navigator.clipboard.writeText(`${subject}\n\n${body}`).then(() => {
+                showToast("Email copy copied!", "success");
+            });
+        }
+
+        // COMPETITOR ANALYSIS
+        function runCompetitorAnalysis() {
+            const urlInput = document.getElementById('competitor-url');
+            const url = urlInput.value.trim();
+            if (!url) {
+                showToast("Please enter a competitor product URL", "error");
+                return;
+            }
+            
+            const loading = document.getElementById('competitor-loading');
+            const container = document.getElementById('competitor-data');
+            
+            loading.style.display = 'flex';
+            container.style.display = 'none';
+            
+            fetch('/api/competitor-analyze', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ product_id: currentSelectedProductId, competitor_url: url })
+            })
+            .then(res => {
+                if (!res.ok) throw new Error("Competitor audit failed");
+                return res.json();
+            })
+            .then(data => {
+                document.getElementById('comp-name-lbl').textContent = `${data.competitor_title || 'Competitor'} Score`;
+                document.getElementById('comp-our-score').textContent = data.my_seo_score;
+                document.getElementById('comp-their-score').textContent = data.competitor_seo_score;
+                
+                // Populate strengths
+                const strengthsContainer = document.getElementById('comp-strengths');
+                strengthsContainer.innerHTML = '';
+                if (data.strengths && data.strengths.length) {
+                    data.strengths.forEach(str => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<i class="fa-solid fa-circle-check icon-green" style="color: #10b981;"></i> ${str}`;
+                        strengthsContainer.appendChild(li);
+                    });
+                } else {
+                    strengthsContainer.innerHTML = '<li>No specific strengths identified.</li>';
+                }
+                
+                // Populate weaknesses
+                const weaknessesContainer = document.getElementById('comp-weaknesses');
+                weaknessesContainer.innerHTML = '';
+                if (data.weaknesses && data.weaknesses.length) {
+                    data.weaknesses.forEach(wk => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<i class="fa-solid fa-circle-xmark icon-red" style="color: #ef4444;"></i> ${wk}`;
+                        weaknessesContainer.appendChild(li);
+                    });
+                } else {
+                    weaknessesContainer.innerHTML = '<li>No specific weaknesses identified.</li>';
+                }
+                
+                // Populate recommendations
+                const recsContainer = document.getElementById('comp-recommendations');
+                recsContainer.innerHTML = '';
+                if (data.recommendations && data.recommendations.length) {
+                    data.recommendations.forEach(rec => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<i class="fa-solid fa-arrow-trend-up icon-cyan" style="color: var(--primary-cyan);"></i> ${rec}`;
+                        recsContainer.appendChild(li);
+                    });
+                } else {
+                    recsContainer.innerHTML = '<li>No recommendations generated.</li>';
+                }
+                
+                loading.style.display = 'none';
+                container.style.display = 'block';
+            })
+            .catch(err => {
+                console.error(err);
+                showToast("Error performing competitor analysis", "error");
+                loading.style.display = 'none';
+            });
+        }
+
+        // BATCH BARS AND ACTIONS
+        function updateBatchBar() {
+            const checkedBoxes = document.querySelectorAll('.product-select-checkbox:checked');
+            const batchBar = document.getElementById('batch-action-bar');
+            const countText = document.getElementById('batch-count-text');
+            
+            if (checkedBoxes.length > 0) {
+                countText.textContent = `${checkedBoxes.length} product${checkedBoxes.length > 1 ? 's' : ''} selected`;
+                batchBar.style.display = 'flex';
+            } else {
+                batchBar.style.display = 'none';
+            }
+        }
+
+        function runBatchOptimize() {
+            const checkedBoxes = document.querySelectorAll('.product-select-checkbox:checked');
+            const productIds = Array.from(checkedBoxes).map(cb => cb.getAttribute('data-product-id'));
+            
+            if (productIds.length === 0) return;
+            
+            const batchBar = document.getElementById('batch-action-bar');
+            const optimizeBtn = batchBar.querySelector('.action-btn');
+            const originalHtml = optimizeBtn.innerHTML;
+            
+            // Disable all interactions
+            optimizeBtn.disabled = true;
+            optimizeBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Running Agent...';
+            
+            const checkboxes = document.querySelectorAll('.product-select-checkbox');
+            checkboxes.forEach(cb => cb.disabled = true);
+            
+            const productTitles = [];
+            productIds.forEach(pid => {
+                const card = document.getElementById(`product-card-${pid}`);
+                if (card) {
+                    const title = card.querySelector('h3') ? card.querySelector('h3').textContent.trim() : 'Product';
+                    productTitles.push(title);
+                }
+            });
+            
+            simulateBatchAgentExecution(productTitles, () => {
+                // Syncing optimization to server
+                optimizeBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Syncing Shopify...';
+                const loadingToast = showToast(`Syncing batch of ${productIds.length} products to Shopify...`, "loading");
+                
+                fetch('/api/batch-optimize', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ product_ids: productIds })
+                })
+                .then(res => {
+                    loadingToast.remove();
+                    if (!res.ok) throw new Error("Batch optimization failed");
+                    return res.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        showToast("Batch optimization completed successfully!");
+                        
+                        Object.keys(data.results).forEach(pid => {
+                            const res = data.results[pid];
+                            if (res.success) {
+                                const card = document.getElementById(`product-card-${pid}`);
+                                if (card) {
+                                    card.classList.add('optimized-glow');
+                                    setTimeout(() => card.classList.remove('optimized-glow'), 2000);
+                                    
+                                    const scoreVal = card.querySelector('.score-num');
+                                    const oldScore = parseInt(scoreVal.textContent);
+                                    scoreVal.textContent = res.new_score;
+                                    
+                                    recalculateStoreScore(oldScore, res.new_score);
+                                    
+                                    if (res.new_image_url) {
+                                        const img = card.querySelector('.product-img');
+                                        if (img) img.src = res.new_image_url;
+                                    }
+                                    
+                                    const statusContainer = document.getElementById(`status-container-${pid}`);
+                                    if (statusContainer) {
+                                        let badgeClass = 'poor';
+                                        let badgeIcon = 'fa-times-circle';
+                                        let badgeText = 'Poor';
+                                        
+                                        if (res.new_score >= 80) {
+                                            badgeClass = 'excellent';
+                                            badgeIcon = 'fa-check-circle';
+                                            badgeText = 'Excellent';
+                                        } else if (res.new_score >= 60) {
+                                            badgeClass = 'good';
+                                            badgeIcon = 'fa-exclamation-triangle';
+                                            badgeText = 'Needs Improvement';
+                                        } else if (res.new_score >= 40) {
+                                            badgeClass = 'weak';
+                                            badgeIcon = 'fa-exclamation-circle';
+                                            badgeText = 'Weak';
+                                        }
+                                        
+                                        statusContainer.innerHTML = `
+                                            <span class="status-badge ${badgeClass}">
+                                                <i class="fa-solid ${badgeIcon}"></i> ${badgeText}
+                                            </span>
+                                        `;
+                                    }
+                                    
+                                    const issuesContainer = document.getElementById(`issues-container-${pid}`);
+                                    if (issuesContainer) {
+                                        issuesContainer.innerHTML = renderCategorizedIssues(res.new_issues);
+                                    }
+                                    
+                                    const optBtn = card.querySelector('.optimize-btn');
+                                    if (optBtn) {
+                                        optBtn.className = 'action-btn optimize-btn already-optimized';
+                                        optBtn.innerHTML = '<i class="fa-solid fa-check-double"></i> Fully Optimized';
+                                        optBtn.disabled = true;
+                                    }
+                                }
+                            }
+                        });
+                        
+                        checkboxes.forEach(cb => {
+                            cb.checked = false;
+                            cb.disabled = false;
+                        });
+                        updateBatchBar();
+                    } else {
+                        throw new Error(data.error || "Batch optimization failure");
+                    }
+                })
+                .catch(err => {
+                    loadingToast.remove();
+                    console.error(err);
+                    showToast(`Batch optimization failed: ${err.message}`, "error");
+                })
+                .finally(() => {
+                    optimizeBtn.disabled = false;
+                    optimizeBtn.innerHTML = originalHtml;
+                    checkboxes.forEach(cb => cb.disabled = false);
+                });
+            });
+        }
+
+        // FIX ALL STORE ISSUES AT ONCE
+        function fixAllStoreIssues() {
+            const unoptimizedCards = document.querySelectorAll('.product-card');
+            const idsToOptimize = [];
+            
+            unoptimizedCards.forEach(card => {
+                const scoreVal = parseInt(card.querySelector('.score-num').textContent);
+                if (scoreVal < 100) {
+                    const pid = card.id.replace('product-card-', '');
+                    if (pid) {
+                        idsToOptimize.push(pid);
+                    }
+                }
+            });
+            
+            if (idsToOptimize.length === 0) {
+                showToast("All products are already fully optimized!", "success");
+                return;
+            }
+            
+            const count = idsToOptimize.length;
+            const msg = `Dispatched Optimizer Agents to resolve issues across ${count} products...`;
+            const loadingToast = showToast(msg, "loading");
+            
+            
+            fetch('/api/batch-optimize', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ product_ids: idsToOptimize })
+            })
+            .then(res => {
+                if (!res.ok) throw new Error("Batch optimization failed");
+                return res.json();
+            })
+            .then(data => {
+                    loadingToast.remove();
+                    if (data.success && data.results) {
+                        let successCount = 0;
+                        
+                        Object.keys(data.results).forEach(pid => {
+                            const res = data.results[pid];
+                            const card = document.getElementById(`product-card-${pid}`);
+                            if (card && res.success) {
+                                successCount++;
+                                card.classList.add('optimized-glow');
+                                setTimeout(() => card.classList.remove('optimized-glow'), 2500);
+                                
+                                const scoreVal = card.querySelector('.score-num');
+                                const oldScore = parseInt(scoreVal.textContent);
+                                scoreVal.textContent = res.new_score;
+                                
+                                recalculateStoreScore(oldScore, res.new_score);
+                                
+                                if (res.new_image_url) {
+                                    const img = card.querySelector('.product-img');
+                                    if (img) img.src = res.new_image_url;
+                                }
+                                
+                                const statusContainer = document.getElementById(`status-container-${pid}`);
+                                if (statusContainer) {
+                                    let badgeClass = 'poor';
+                                    let badgeIcon = 'fa-times-circle';
+                                    let badgeText = 'Poor';
+                                    
+                                    if (res.new_score >= 80) {
+                                        badgeClass = 'excellent';
+                                        badgeIcon = 'fa-check-circle';
+                                        badgeText = 'Excellent';
+                                    } else if (res.new_score >= 60) {
+                                        badgeClass = 'good';
+                                        badgeIcon = 'fa-exclamation-triangle';
+                                        badgeText = 'Needs Improvement';
+                                    } else if (res.new_score >= 40) {
+                                        badgeClass = 'weak';
+                                        badgeIcon = 'fa-exclamation-circle';
+                                        badgeText = 'Weak';
+                                    }
+                                    
+                                    statusContainer.innerHTML = `
+                                        <span class="status-badge ${badgeClass}">
+                                            <i class="fa-solid ${badgeIcon}"></i> ${badgeText}
+                                        </span>
+                                    `;
+                                }
+                                
+                                const issuesContainer = document.getElementById(`issues-container-${pid}`);
+                                if (issuesContainer) {
+                                    issuesContainer.innerHTML = renderCategorizedIssues(res.new_issues);
+                                }
+                                
+                                const optBtn = card.querySelector('.optimize-btn');
+                                if (optBtn) {
+                                    optBtn.className = 'action-btn optimize-btn already-optimized';
+                                    optBtn.innerHTML = '<i class="fa-solid fa-check-double"></i> Fully Optimized';
+                                    optBtn.disabled = true;
+                                }
+                            }
+                        });
+                        
+                        updateDiagnosticStats();
+                        showToast(`Successfully optimized ${successCount} products!`, "success");
+                    } else {
+                        throw new Error(data.error || "Batch optimization failure");
+                    }
+                })
+            .catch(err => {
+                loadingToast.remove();
+                console.error(err);
+                showToast(`Batch optimization failed: ${err.message}`, "error");
+            });
+        }
+
+        // Helper to update Diagnostic Stats Card counts
+        function updateDiagnosticStats() {
+            let total = 0;
+            let optimized = 0;
+            const cards = document.querySelectorAll('.product-card');
+            
+            cards.forEach(card => {
+                total++;
+                const score = parseInt(card.querySelector('.score-num').textContent);
+                if (score >= 90) {
+                    optimized++;
+                }
+            });
+            
+            const panels = document.querySelectorAll('.glass-panel strong');
+            if (panels && panels.length > 1) {
+                panels[0].textContent = total;
+                panels[1].textContent = `${optimized} / ${total}`;
+                if (panels[2]) {
+                    panels[2].textContent = `${total - optimized} Products`;
+                }
+            }
+        }
+
+        // ALIGN AI REPRESENTATION IDENTITY & STRESS RESILIENCE
+        function alignTwinPerception(btn) {
+            const productId = currentSelectedProductId;
+            if (!productId) return;
+            
+            const card = document.getElementById(`product-card-${productId}`);
+            const title = card ? (card.querySelector('h3') ? card.querySelector('h3').textContent.trim() : 'Product') : 'Product';
+            
+            const originalHtml = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Aligning Twin Perception...';
+            
+            
+            const loadingToast = showToast(`Running representation optimization for "${title}"...`, "loading");
+            
+            setTimeout(() => {
+                    // Optimize via server
+                    fetch(`/api/optimize/${productId}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' }
+                    })
+                    .then(res => {
+                        loadingToast.remove();
+                        if (!res.ok) throw new Error("Failed to optimize product");
+                        return res.json();
+                    })
+                    .then(data => {
+                        btn.disabled = false;
+                        btn.innerHTML = originalHtml;
+                        
+                        if (data.success) {
+                            showToast("AI Representation optimized & synced successfully!", "success");
+                            
+                            if (card) {
+                                card.classList.add('optimized-glow');
+                                setTimeout(() => card.classList.remove('optimized-glow'), 2000);
+                                
+                                const scoreVal = card.querySelector('.score-num');
+                                if (scoreVal) {
+                                    const oldScore = parseInt(scoreVal.textContent);
+                                    scoreVal.textContent = data.new_score;
+                                    recalculateStoreScore(oldScore, data.new_score);
+                                }
+                                
+                                const statusContainer = document.getElementById(`status-container-${productId}`);
+                                if (statusContainer) {
+                                    let badgeClass = 'poor';
+                                    let badgeIcon = 'fa-times-circle';
+                                    let badgeText = 'Poor';
+                                    
+                                    if (data.new_score >= 80) {
+                                        badgeClass = 'excellent';
+                                        badgeIcon = 'fa-check-circle';
+                                        badgeText = 'Excellent';
+                                    } else if (data.new_score >= 60) {
+                                        badgeClass = 'good';
+                                        badgeIcon = 'fa-exclamation-triangle';
+                                        badgeText = 'Needs Improvement';
+                                    } else if (data.new_score >= 40) {
+                                        badgeClass = 'weak';
+                                        badgeIcon = 'fa-exclamation-circle';
+                                        badgeText = 'Weak';
+                                    }
+                                    
+                                    statusContainer.innerHTML = `
+                                        <span class="status-badge ${badgeClass}">
+                                            <i class="fa-solid ${badgeIcon}"></i> ${badgeText}
+                                        </span>
+                                    `;
+                                }
+                                
+                                const issuesContainer = document.getElementById(`issues-container-${productId}`);
+                                if (issuesContainer) {
+                                    issuesContainer.innerHTML = renderCategorizedIssues(data.new_issues);
+                                }
+                                
+                                const optBtn = card.querySelector('.optimize-btn');
+                                if (optBtn) {
+                                    optBtn.className = 'action-btn optimize-btn already-optimized';
+                                    optBtn.innerHTML = '<i class="fa-solid fa-check-double"></i> Fully Optimized';
+                                    optBtn.disabled = true;
+                                }
+                            }
+                            
+                            // Update diagnostic counts
+                            updateDiagnosticStats();
+                            
+                            // Force refresh representation lab layout
+                            representationLabCached = null;
+                            loadRepresentationLab();
+                        } else {
+                            throw new Error(data.error || "Simulation error");
+                        }
+                    })
+                    .catch(err => {
+                        loadingToast.remove();
+                        btn.disabled = false;
+                        btn.innerHTML = originalHtml;
+                        console.error(err);
+                        showToast(`Optimization failed: ${err.message}`, "error");
+                    });
+            }, 2000);
+        }
+
+        // MOCKUP MODAL INTERACTION
+        function openMockupModal(productId, productTitle, currentImgUrl) {
+            currentMockupProductId = productId;
+            document.getElementById('mockup-current-img').src = currentImgUrl || '';
+            
+            // Set preset to default
+            const presets = document.querySelectorAll('.preset-card');
+            presets.forEach(p => p.classList.remove('active'));
+            presets[0].classList.add('active');
+            
+            document.getElementById('mockup-modal').classList.add('active');
+        }
+
+        function closeMockupModal() {
+            document.getElementById('mockup-modal').classList.remove('active');
+        }
+
+        function closeMockupOnOverlay(event) {
+            if (event.target === document.getElementById('mockup-modal')) {
+                closeMockupModal();
+            }
+        }
+
+        function selectPreset(elem) {
+            const presets = document.querySelectorAll('.preset-card');
+            presets.forEach(p => p.classList.remove('active'));
+            elem.classList.add('active');
+        }
+
+        function generateMockup() {
+            const activePreset = document.querySelector('.preset-card.active').getAttribute('data-preset');
+            const loading = document.getElementById('mockup-loading');
+            
+            loading.style.display = 'flex';
+            
+            fetch('/api/generate-mockup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ product_id: currentMockupProductId, style_preset: activePreset })
+            })
+            .then(res => {
+                if (!res.ok) throw new Error("Mockup generation failed");
+                return res.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    showToast("Studio mockup generated successfully!", "success");
+                    document.getElementById('mockup-current-img').src = data.mockup_url;
+                    
+                    // Update main card image
+                    const cardImg = document.getElementById(`product-img-${currentMockupProductId}`);
+                    if (cardImg) {
+                        cardImg.src = data.mockup_url;
+                    }
+                } else {
+                    throw new Error(data.error || "Simulation error");
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                showToast("Error generating mockup background swap", "error");
+            })
+            .finally(() => {
+                loading.style.display = 'none';
+            });
+        }
+
+        // AUTO OPTIMIZE PRODUCT
+        function optimizeProduct(productId, btn) {
+            const card = document.getElementById(`product-card-${productId}`);
+            const title = card.querySelector('h3') ? card.querySelector('h3').textContent.trim() : 'Shopify Product';
+            const originalHtml = btn.innerHTML;
+            
+            // Gather recommendations/issues
+            const issues = [];
+            const issueElements = card.querySelectorAll('.issues-list li');
+            issueElements.forEach(li => {
+                issues.push(li.textContent.replace('👉', '').replace('👉 ', '').trim());
+            });
+            
+            // Set loading state on button
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Running Agent...';
+            
+            simulateAgentExecution(title, issues, () => {
+                // Syncing optimization to server
+                btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Syncing...';
+                const loadingToast = showToast("Running Auto-Optimizer Agent...", "loading");
+                
+                fetch(`/api/optimize/${productId}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                .then(res => {
+                    loadingToast.remove();
+                    if (!res.ok) {
+                        return res.json().then(errData => {
+                            throw new Error(errData.error || "Failed to auto-optimize");
+                        });
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    btn.disabled = false;
+                    btn.innerHTML = originalHtml;
+                    if (data.success) {
+                        if (data.demo_mode) {
+                            showToast("Optimized locally in Demo Mode (Shopify token is Read-Only)", "success");
+                        } else {
+                            showToast("Product successfully optimized and synced to Shopify!");
+                        }
+                        
+                        // Update image if it was added/changed
+                        if (data.new_image_url) {
+                            const imgContainer = card.querySelector('.product-image-container');
+                            if (imgContainer) {
+                                imgContainer.innerHTML = `<img src="${data.new_image_url}" alt="${data.changes?.new_title || 'Product Image'}" class="product-img">`;
+                            }
+                        }
+                        
+                        // Add success effect to card
+                        card.classList.add('optimized-glow');
+                        setTimeout(() => card.classList.remove('optimized-glow'), 2000);
+                        
+                        // Update score display on card
+                        const scoreVal = card.querySelector('.score-num');
+                        const oldScore = parseInt(scoreVal.textContent);
+                        scoreVal.textContent = data.new_score;
+                        
+                        // Update status badge
+                        const statusContainer = document.getElementById(`status-container-${productId}`);
+                        let badgeClass = 'poor';
+                        let badgeIcon = 'fa-times-circle';
+                        let badgeText = 'Poor';
+                        
+                        if (data.new_score >= 80) {
+                            badgeClass = 'excellent';
+                            badgeIcon = 'fa-check-circle';
+                            badgeText = 'Excellent';
+                        } else if (data.new_score >= 60) {
+                            badgeClass = 'good';
+                            badgeIcon = 'fa-exclamation-triangle';
+                            badgeText = 'Needs Improvement';
+                        } else if (data.new_score >= 40) {
+                            badgeClass = 'weak';
+                            badgeIcon = 'fa-exclamation-circle';
+                            badgeText = 'Weak';
+                        }
+                        
+                        statusContainer.innerHTML = `
+                            <span class="status-badge ${badgeClass}">
+                                <i class="fa-solid ${badgeIcon}"></i> ${badgeText}
+                            </span>
+                        `;
+                        
+                        // Update issues container
+                        const issuesContainer = document.getElementById(`issues-container-${productId}`);
+                        if (issuesContainer) {
+                            issuesContainer.innerHTML = renderCategorizedIssues(data.new_issues);
+                        }
+                        
+                        // Update button
+                        btn.className = 'action-btn optimize-btn already-optimized';
+                        btn.innerHTML = '<i class="fa-solid fa-check-double"></i> Fully Optimized';
+                        btn.disabled = true;
+
+                        // Dynamically recalculate average store score
+                        recalculateStoreScore(oldScore, data.new_score);
+                    } else {
+                        throw new Error(data.error || "Optimization returned failed status");
+                    }
+                })
+                .catch(err => {
+                    loadingToast.remove();
+                    console.error(err);
+                    showToast(`Optimization failed: ${err.message}`, "error");
+                    btn.disabled = false;
+                    btn.innerHTML = originalHtml;
+                });
+            });
+        }
+
+        // Dynamic store score updater
+        function recalculateStoreScore(oldVal, newVal) {
+            const overallScoreNum = document.getElementById('overall-score-num');
+            const circle = document.getElementById('overall-progress-circle');
+            const totalProducts = document.querySelectorAll('.product-card').length;
+            
+            if (overallScoreNum && circle && totalProducts > 0) {
+                let currentAvg = parseFloat(overallScoreNum.textContent);
+                let scoreDiff = newVal - oldVal;
+                let newAvg = Math.round((currentAvg * totalProducts + scoreDiff) / totalProducts);
+                
+                // Animate numbers
+                let start = currentAvg;
+                let end = newAvg;
+                let duration = 800;
+                let startTime = null;
+                
+                function animateNum(timestamp) {
+                    if (!startTime) startTime = timestamp;
+                    let progress = Math.min((timestamp - startTime) / duration, 1);
+                    let currentVal = Math.round(start + progress * (end - start));
+                    overallScoreNum.textContent = currentVal;
+                    
+                    // Update circle offset
+                    let offset = 326.7 - (326.7 * currentVal) / 100;
+                    circle.style.strokeDashoffset = offset;
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(animateNum);
+                    }
+                }
+                requestAnimationFrame(animateNum);
+            }
+        }
+
+        // CONVERSATIONAL CHATBOT ASSISTANT
+        function toggleChat() {
+            const widget = document.getElementById('chatbot-widget');
+            const chevron = document.getElementById('chat-chevron');
+            
+            if (widget.classList.contains('collapsed')) {
+                widget.classList.remove('collapsed');
+                chevron.className = 'fa-solid fa-chevron-down';
+                // Scroll to bottom
+                const msgs = document.getElementById('chat-messages');
+                msgs.scrollTop = msgs.scrollHeight;
+            } else {
+                widget.classList.add('collapsed');
+                chevron.className = 'fa-solid fa-chevron-up';
+            }
+        }
+
+        function sendQuickMessage(text) {
+            document.getElementById('chat-input').value = text;
+            document.getElementById('chat-form').dispatchEvent(new Event('submit'));
+        }
+
+        function handleChatSubmit(event) {
+            event.preventDefault();
+            const input = document.getElementById('chat-input');
+            const text = input.value.trim();
+            if (!text) return;
+            
+            input.value = '';
+            appendMessage(text, 'user');
+            
+            // Add typing indicator
+            const typingIndicator = appendTypingIndicator();
+            
+            // Push user message to history
+            chatHistory.push({ sender: 'user', text: text });
+            
+            fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: text, history: chatHistory })
+            })
+            .then(res => {
+                if (!res.ok) throw new Error("Chat bot failed to reply");
+                return res.json();
+            })
+            .then(data => {
+                typingIndicator.remove();
+                appendMessage(data.response, 'bot');
+                chatHistory.push({ sender: 'bot', text: data.response });
+            })
+            .catch(err => {
+                console.error(err);
+                typingIndicator.remove();
+                appendMessage("Sorry, I encountered an error. Please verify your connection or configurations.", 'bot');
+            });
+        }
+
+        function appendMessage(text, sender) {
+            const container = document.getElementById('chat-messages');
+            const msg = document.createElement('div');
+            msg.className = `chat-message ${sender}`;
+            
+            // Basic markdown parser for bold, lists, and headers
+            let formattedText = text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/### (.*?)\n/g, '<h4>$1</h4>')
+                .replace(/## (.*?)\n/g, '<h3>$1</h3>')
+                .replace(/\n\n/g, '<br><br>')
+                .replace(/\n/g, '<br>');
+                
+            msg.innerHTML = `
+                <div class="message-content">
+                    ${formattedText}
+                </div>
+            `;
+            container.appendChild(msg);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function appendTypingIndicator() {
+            const container = document.getElementById('chat-messages');
+            const indicator = document.createElement('div');
+            indicator.className = 'chat-message bot typing';
+            indicator.innerHTML = `
+                <div class="message-content">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            `;
+            container.appendChild(indicator);
+            container.scrollTop = container.scrollHeight;
+            return indicator;
+        }
+    </script>
+</body>
+</html>
